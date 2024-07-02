@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="login-container">
+        <h1>SAMS</h1>
+        <p>Your Partner in Student Success</p>
+        <a href="./teachers-page/dashboard.php">dashboard</a>
+        <!-- <form id="loginForm" action="register.php" method="POST">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              type="email"
+              id="username"
+              name="username"
+              placeholder="Junemarapagmahal101@gmail.com"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <a href="" class="forgot-password">Forgot your password?</a>
+          <button
+            type="submit"
+            class="login-btn"
+            href="./teachers-page/dashboard.php"
+          >
+            LOGIN
+          </button>
+        </form> -->
+        <p class="register-text">
+          Don't have an account? <a href="#">Register Now</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
