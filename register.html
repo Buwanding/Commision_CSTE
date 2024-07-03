@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>SAMS</h1>
+            <p>Your Partner in Student Success</p>
+            <form id="registerForm" action="register.php" method="POST">
+                <div class="input-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first_name" placeholder="June" required>
+                </div>
+                <div class="input-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last_name" placeholder="Mapano" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">E-mail Address</label>
+                    <input type="email" id="email" name="email" placeholder="Junemapagmahal101@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="contact-number">Contact Number</label>
+                    <input type="text" id="contact-number" name="contact_number" placeholder="09295834504" required>
+                </div>
+                <div class="input-group">
+                    <label for="role">Role</label>
+                    <select id="role" name="role" required>
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="junegwapooo123" required>
+                </div>
+                <button type="submit" id="sign-in-button">SIGN IN</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

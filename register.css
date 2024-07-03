@@ -6,11 +6,11 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('background-image-url') no-repeat center center fixed;
+    background: url('https://sams.ph/images/bg.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
-.background, .container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@ body, html {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.login-container, .form-container {
+.form-container {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -71,17 +71,4 @@ button {
 
 button:hover {
     background: #0056b3;
-}
-
-.forgot-password, .register-text a {
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    color: #007bff;
-    text-decoration: none;
-    margin-top: 10px;
-}
-
-.forgot-password:hover, .register-text a:hover {
-    text-decoration: underline;
 }
