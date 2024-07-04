@@ -13,19 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST['role'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Encrypt the password
 
-    // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, contact_number, role, password) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $first_name, $last_name, $email, $contact_number, $role, $password);
 
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
+$sql = "INSERT INTO users (first_name, last_name, email, contact_number, role, password) VALUES ('$first_name', '$last_name', '$email', '$contact_number', '$role', '$password')";
+        $res = $conn->query($sql);
+        if ($res === TRUE) {
+            echo "Record added";
+        } else {
+            echo "Error: " . $conn->error;
+        }
     }
-
-    $stmt->close();
-    $conn->close();
-} else {
-    echo "Invalid request method.";
-}
 ?>
