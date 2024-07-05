@@ -18,6 +18,7 @@ $sql = "INSERT INTO users (first_name, last_name, email, contact_number, role, p
         $res = $conn->query($sql);
         if ($res === TRUE) {
             echo "Record added";
+            header("Location: ../index.html");
         } else {
             echo "Error: " . $conn->error;
         }

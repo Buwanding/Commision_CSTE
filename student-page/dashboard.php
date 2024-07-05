@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
 
 require '../db.php';
 
-// // Fetch subjects from the database
+// Fetch subjects from the database
 // $sql = "SELECT subject_name, subject_color FROM subjects WHERE username = ?";
 // $stmt = $conn->prepare($sql);
 // $stmt->bind_param("s", $_SESSION['username']);
