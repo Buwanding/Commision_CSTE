@@ -7,9 +7,9 @@ if ($conn === false) {
 $database = "CSTE";
 $query = "CREATE DATABASE IF NOT EXISTS $database";
 if (mysqli_query($conn, $query)) {
-    echo "Database created successfully or already exists.<br>";
+    // alert ("Database created successfully or already exists.<br>");
 } else {
-    echo "Error creating database: " . mysqli_error($conn) . "<br>";
+    alert ("Error creating database: " . mysqli_error($conn) . "<br>");
 }
 
 mysqli_select_db($conn, $database);
@@ -25,7 +25,7 @@ $query = "CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL
 )";
 if (mysqli_query($conn, $query)) {
-    echo "Users table created successfully or already exists.<br>";
+    // echo "Users table created successfully or already exists.<br>";
 } else {
     echo "Error creating users table: " . mysqli_error($conn) . "<br>";
 }
@@ -41,7 +41,7 @@ $query = "CREATE TABLE IF NOT EXISTS subjects (
     FOREIGN KEY (username) REFERENCES users(email)
 )";
 if (mysqli_query($conn, $query)) {
-    echo "Subjects table created successfully or already exists.<br>";
+    // echo "Subjects table created successfully or already exists.<br>";
 } else {
     echo "Error creating subjects table: " . mysqli_error($conn) . "<br>";
 }
@@ -55,7 +55,7 @@ $query = "CREATE TABLE IF NOT EXISTS subjects (
     FOREIGN KEY (username) REFERENCES users(email)
 )";
 if (mysqli_query($conn, $query)) {
-    echo "Subjects table created successfully or already exists.<br>";
+    // echo "Subjects table created successfully or already exists.<br>";
 } else {
     echo "Error creating subjects table: " . mysqli_error($conn) . "<br>";
 }

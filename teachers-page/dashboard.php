@@ -10,6 +10,18 @@ if (!isset($_SESSION['username'])) {
 
 require '../php/db.php';
 
+// Handle new subject submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['subject_name']) && isset($_POST['subject_color'])) {
+    $subject_name = $_POST['subject_name'];
+    $subject_color = $_POST['subject_color'];
+
+    $sql = "INSERT INTO subjects (username, subject_name, subject_color) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $_SESSION['username'], $subject_name, $subject_color);
+    $stmt->execute();
+    $stmt->close();
+}
+
 // Fetch subjects from the database
 $sql = "SELECT subject_name, subject_color FROM subjects WHERE username = ?";
 $stmt = $conn->prepare($sql);
@@ -46,11 +58,24 @@ $conn->close();
         <h2>Subjects Handled</h2>
         <div class="subjects-container">
             <?php foreach ($subjects as $subject): ?>
-                <div class="subject-card" style="background-color: <?= $subject['subject_color'] ?>;">
-                    <p><?= $subject['subject_name'] ?></p>
+                <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
+                    <a href="subject_page.php?subject=<?= urlencode($subject['subject_name']) ?>" style="text-decoration: none; color: inherit;">
+                        <p><?= htmlspecialchars($subject['subject_name']) ?></p>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
+        
+        <h2>Add New Subject</h2>
+        <form action="" method="post" class="add-subject-form">
+            <label for="subject_name">Subject Name:</label>
+            <input type="text" id="subject_name" name="subject_name" required>
+            
+            <label for="subject_color">Subject Color:</label>
+            <input type="color" id="subject_color" name="subject_color" required>
+            
+            <button type="submit">Add Subject</button>
+        </form>
     </main>
 </body>
 </html>
