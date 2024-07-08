@@ -8,22 +8,22 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-require '../db.php';
+require '../php/db.php';
 
-// // Fetch subjects from the database
-// $sql = "SELECT subject_name, subject_color FROM subjects WHERE username = ?";
-// $stmt = $conn->prepare($sql);
-// $stmt->bind_param("s", $_SESSION['username']);
-// $stmt->execute();
-// $result = $stmt->get_result();
+// Fetch subjects from the database
+$sql = "SELECT subject_name, subject_color FROM subjects WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $_SESSION['username']);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// $subjects = [];
-// while ($row = $result->fetch_assoc()) {
-//     $subjects[] = $row;
-// }
+$subjects = [];
+while ($row = $result->fetch_assoc()) {
+    $subjects[] = $row;
+}
 
-// $stmt->close();
-// $conn->close();
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -32,18 +32,18 @@ require '../db.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboad-style.css">
+    <link rel="stylesheet" href="../css/dashboard-style.css">
 </head>
 <body>
     <header>
         <h1>SAMS</h1>
         <nav>
             <a href="#">Profile</a>
-            <a href="#">Logout</a>
+            <a href="../index.html">Logout</a>
         </nav>
     </header>
     <main>
-        <h2>Subjects Enrolled</h2>
+        <h2>Subjects Handled</h2>
         <div class="subjects-container">
             <?php foreach ($subjects as $subject): ?>
                 <div class="subject-card" style="background-color: <?= $subject['subject_color'] ?>;">
