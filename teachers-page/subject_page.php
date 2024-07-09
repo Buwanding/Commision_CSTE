@@ -1,42 +1,3 @@
-<?php
-// Start session to use session variables
-session_start();
-
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: index.html");
-    exit();
-}
-
-require '../php/db.php';
-
-// Get the subject name from the query parameter
-if (!isset($_GET['subject'])) {
-    header("Location: dashboard.php");
-    exit();
-}
-
-$subject_name = $_GET['subject'];
-
-// Fetch subject details from the database
-$sql = "SELECT subject_name, subject_color FROM subjects WHERE username = ? AND subject_name = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $_SESSION['username'], $subject_name);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    // Subject not found
-    header("Location: dashboard.php");
-    exit();
-}
-
-$subject = $result->fetch_assoc();
-
-$stmt->close();
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +17,62 @@ $conn->close();
     <main>
         <div class="subject-details" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
             <p>Details for subject: <?= htmlspecialchars($subject['subject_name']) ?></p>
-            <!-- You can add more details or features related to the subject here -->
+            <!-- Form to add activities -->
+            <h2>Add Activity</h2>
+            <form action="../php/add_activity.php" method="post">
+                <input type="hidden" name="subject_id" value="<?= $subject['id'] ?>">
+                <label for="activity_name">Activity Name:</label>
+                <input type="text" id="activity_name" name="activity_name" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+                <button type="submit">Add Activity</button>
+            </form>
+            
+            <!-- Form to assign students -->
+            <h2>Assign Student</h2>
+            <form action="../php/assign_student.php" method="post">
+                <input type="hidden" name="subject_id" value="<?= $subject['id'] ?>">
+                <label for="student_name">Student Name:</label>
+                <input type="text" id="student_name" name="student_name" required>
+                <button type="submit">Assign Student</button>
+            </form>
+
+            <!-- Display activities and students -->
+            <h2>Activities</h2>
+            <ul>
+                <?php
+                // Fetch activities for the subject
+                $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
+                $activity_stmt = $conn->prepare($activity_query);
+                $activity_stmt->bind_param("i", $subject['id']);
+                $activity_stmt->execute();
+                $activity_result = $activity_stmt->get_result();
+                
+                while ($activity = $activity_result->fetch_assoc()) {
+                    echo "<li>" . htmlspecialchars($activity['activity_name']) . ": " . htmlspecialchars($activity['description']) . "</li>";
+                }
+                
+                $activity_stmt->close();
+                ?>
+            </ul>
+            
+            <h2>Assigned Students</h2>
+            <ul>
+                <?php
+                // Fetch students assigned to the subject
+                $student_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
+                $student_stmt = $conn->prepare($student_query);
+                $student_stmt->bind_param("i", $subject['id']);
+                $student_stmt->execute();
+                $student_result = $student_stmt->get_result();
+                
+                while ($student = $student_result->fetch_assoc()) {
+                    echo "<li>" . htmlspecialchars($student['student_name']) . "</li>";
+                }
+                
+                $student_stmt->close();
+                ?>
+            </ul>
         </div>
     </main>
 </body>

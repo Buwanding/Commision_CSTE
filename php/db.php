@@ -45,19 +45,31 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo "Error creating subjects table: " . mysqli_error($conn) . "<br>";
 }
-$query = "CREATE TABLE IF NOT EXISTS subjects (
+// Create activities table if not exists
+$query = "CREATE TABLE IF NOT EXISTS activities (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT(6) UNSIGNED,
-    username VARCHAR(50) NOT NULL,
-    subject_name VARCHAR(255) NOT NULL,
-    subject_color VARCHAR(7) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (username) REFERENCES users(email)
+    subject_id INT NOT NULL,
+    activity_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    FOREIGN KEY (subject_id) REFERENCES subjects(id)
 )";
 if (mysqli_query($conn, $query)) {
-    // echo "Subjects table created successfully or already exists.<br>";
+    echo "Activities table created successfully or already exists.<br>";
 } else {
-    echo "Error creating subjects table: " . mysqli_error($conn) . "<br>";
+    echo "Error creating activities table: " . mysqli_error($conn) . "<br>";
+}
+
+// Create student_subjects table if not exists
+$query = "CREATE TABLE IF NOT EXISTS student_subjects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    subject_id INT NOT NULL,
+    student_name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (subject_id) REFERENCES subjects(id)
+)";
+if (mysqli_query($conn, $query)) {
+    echo "Student_subjects table created successfully or already exists.<br>";
+} else {
+    echo "Error creating student_subjects table: " . mysqli_error($conn) . "<br>";
 }
 
 // mysqli_close($conn);
