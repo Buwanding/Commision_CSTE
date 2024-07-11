@@ -54,7 +54,7 @@ $query = "CREATE TABLE IF NOT EXISTS activities (
     FOREIGN KEY (subject_id) REFERENCES subjects(id)
 )";
 if (mysqli_query($conn, $query)) {
-    echo "Activities table created successfully or already exists.<br>";
+    // echo ("Activities table created successfully or already exists.<br>");
 } else {
     echo "Error creating activities table: " . mysqli_error($conn) . "<br>";
 }
@@ -67,7 +67,7 @@ $query = "CREATE TABLE IF NOT EXISTS student_subjects (
     FOREIGN KEY (subject_id) REFERENCES subjects(id)
 )";
 if (mysqli_query($conn, $query)) {
-    echo "Student_subjects table created successfully or already exists.<br>";
+    // echo "Student_subjects table created successfully or already exists.<br>";
 } else {
     echo "Error creating student_subjects table: " . mysqli_error($conn) . "<br>";
 }

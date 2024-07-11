@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($subject['subject_name']) ?></title>
+    <title><?php echo $_REQUEST["subject"]; ?></title>
     <link rel="stylesheet" href="./teacher-styles/subject-style.css">
 </head>
 <body>
     <header>
-        <h1><?= htmlspecialchars($subject['subject_name']) ?></h1>
+        <h1><?php echo $_REQUEST["subject"]; ?></h1>
         <nav>
             <a href="dashboard.php">Back to Dashboard</a>
             <a href="../index.html">Logout</a>
@@ -16,7 +16,7 @@
     </header>
     <main>
         <div class="subject-details" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
-            <p>Details for subject: <?= htmlspecialchars($subject['subject_name']) ?></p>
+            <p>Details for subject: <?php echo $_REQUEST["subject"]; ?></p>
             <!-- Form to add activities -->
             <h2>Add Activity</h2>
             <form action="../php/add_activity.php" method="post">
@@ -42,6 +42,7 @@
             <ul>
                 <?php
                 // Fetch activities for the subject
+                require '../php/db.php'; // Ensure database connection is included
                 $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
                 $activity_stmt = $conn->prepare($activity_query);
                 $activity_stmt->bind_param("i", $subject['id']);
@@ -71,6 +72,7 @@
                 }
                 
                 $student_stmt->close();
+                $conn->close(); // Close the connection after all queries
                 ?>
             </ul>
         </div>
