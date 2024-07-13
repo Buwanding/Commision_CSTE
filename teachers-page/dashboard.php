@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['subject_name']) && iss
 }
 
 // Fetch subjects from the database
-$sql = "SELECT subject_name, subject_color FROM subjects WHERE username = ?";
+$sql = "SELECT id, subject_name, subject_color FROM subjects WHERE username = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $_SESSION['username']);
 $stmt->execute();
@@ -59,7 +59,7 @@ $conn->close();
         <div class="subjects-container">
             <?php foreach ($subjects as $subject): ?>
                 <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
-                    <a href="subject_page.php?subject=<?= urlencode($subject['subject_name']) ?>" style="text-decoration: none; color: inherit;">
+                    <a href="subject_page.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>" style="text-decoration: none; color: inherit;">
                         <p><?= htmlspecialchars($subject['subject_name']) ?></p>
                     </a>
                 </div>

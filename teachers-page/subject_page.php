@@ -1,26 +1,27 @@
+<?php $subject_id = $_REQUEST["subject_id"]; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $_REQUEST["subject"]; ?></title>
+    <title><?php echo htmlspecialchars($_REQUEST["subject"]); ?></title>
     <link rel="stylesheet" href="./teacher-styles/subject-style.css">
 </head>
 <body>
     <header>
-        <h1><?php echo $_REQUEST["subject"]; ?></h1>
+        <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1>
         <nav>
             <a href="dashboard.php">Back to Dashboard</a>
             <a href="../index.html">Logout</a>
         </nav>
     </header>
     <main>
-        <div class="subject-details" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
-            <p>Details for subject: <?php echo $_REQUEST["subject"]; ?></p>
+        <div class="subject-details">
+            <p>Details for subject: <?php echo htmlspecialchars($_REQUEST["subject"]); ?></p>
             <!-- Form to add activities -->
             <h2>Add Activity</h2>
             <form action="../php/add_activity.php" method="post">
-                <input type="hidden" name="subject_id" value="<?= $subject['id'] ?>">
+                <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
                 <label for="activity_name">Activity Name:</label>
                 <input type="text" id="activity_name" name="activity_name" required>
                 <label for="description">Description:</label>
@@ -31,7 +32,7 @@
             <!-- Form to assign students -->
             <h2>Assign Student</h2>
             <form action="../php/assign_student.php" method="post">
-                <input type="hidden" name="subject_id" value="<?= $subject['id'] ?>">
+                <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
                 <label for="student_name">Student Name:</label>
                 <input type="text" id="student_name" name="student_name" required>
                 <button type="submit">Assign Student</button>
@@ -45,7 +46,7 @@
                 require '../php/db.php'; // Ensure database connection is included
                 $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
                 $activity_stmt = $conn->prepare($activity_query);
-                $activity_stmt->bind_param("i", $subject['id']);
+                $activity_stmt->bind_param("i", $subject_id);
                 $activity_stmt->execute();
                 $activity_result = $activity_stmt->get_result();
                 
@@ -63,7 +64,7 @@
                 // Fetch students assigned to the subject
                 $student_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
                 $student_stmt = $conn->prepare($student_query);
-                $student_stmt->bind_param("i", $subject['id']);
+                $student_stmt->bind_param("i", $subject_id);
                 $student_stmt->execute();
                 $student_result = $student_stmt->get_result();
                 
@@ -72,7 +73,7 @@
                 }
                 
                 $student_stmt->close();
-                $conn->close(); // Close the connection after all queries
+                // $conn->close(); // Close the connection after all queries
                 ?>
             </ul>
         </div>

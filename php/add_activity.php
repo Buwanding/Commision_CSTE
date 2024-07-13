@@ -24,9 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->close();
-    $conn->close();
+    // $conn->close();
 
-    header("Location: subject.php?subject=" . urlencode($_POST['subject_name']));
+    header("Location: ../teachers-page/dashboard.php");
     exit();
 }
 ?>
