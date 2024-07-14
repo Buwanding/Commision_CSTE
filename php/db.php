@@ -63,7 +63,7 @@ if (mysqli_query($conn, $query)) {
 $query = "CREATE TABLE IF NOT EXISTS student_subjects (
     id INT AUTO_INCREMENT PRIMARY KEY,
     subject_id INT NOT NULL,
-    student_name VARCHAR(255) NOT NULL,
+    student_email VARCHAR(255) NOT NULL,
     FOREIGN KEY (subject_id) REFERENCES subjects(id)
 )";
 if (mysqli_query($conn, $query)) {
@@ -71,6 +71,23 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo "Error creating student_subjects table: " . mysqli_error($conn) . "<br>";
 }
+
+$query = "CREATE TABLE IF NOT EXISTS activity_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    subject_id INT NOT NULL,
+    student_email VARCHAR(255) NOT NULL,
+    details TEXT,
+    student_file BLOB,
+    remarks TEXT,
+    deadline DATE NOT NULL,
+    FOREIGN KEY (subject_id) REFERENCES subjects(id)
+);";
+if (mysqli_query($conn, $query)) {
+    // echo "Student_subjects table created successfully or already exists.<br>";
+} else {
+    echo "Error creating student_subjects table: " . mysqli_error($conn) . "<br>";
+}
+
 
 // mysqli_close($conn);
 ?>
