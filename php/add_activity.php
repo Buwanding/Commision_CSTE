@@ -12,10 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subject_id = $_POST['subject_id'];
     $activity_name = $_POST['activity_name'];
     $description = $_POST['description'];
+    $deadline = $_POST["deadline"];
 
-    $sql = "INSERT INTO activities (subject_id, activity_name, description) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO activities (subject_id, activity_name, description, deadline) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iss", $subject_id, $activity_name, $description);
+    $stmt->bind_param("isss", $subject_id, $activity_name, $description, $deadline);
 
     if ($stmt->execute()) {
         echo "Activity added successfully!";

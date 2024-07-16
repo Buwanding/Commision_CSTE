@@ -26,6 +26,8 @@
                 <input type="text" id="activity_name" name="activity_name" required>
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>
+                <label for="deadline">Deadline:</label>
+                <input type="date" id="deadline" name="deadline" required>
                 <button type="submit">Add Activity</button>
             </form>
             
@@ -69,7 +71,7 @@
                 $student_result = $student_stmt->get_result();
                 
                 while ($student = $student_result->fetch_assoc()) {
-                    echo "<li>" . htmlspecialchars($student['student_name']) . "</li>";
+                    echo "<li>" . htmlspecialchars($student['student_email']) . "</li>";
                 }
                 
                 $student_stmt->close();

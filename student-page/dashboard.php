@@ -11,19 +11,19 @@ if (!isset($_SESSION['username'])) {
 require '../php/db.php';
 
 // Fetch subjects from the database
-// $sql = "SELECT subject_name, subject_color FROM subjects WHERE username = ?";
-// $stmt = $conn->prepare($sql);
-// $stmt->bind_param("s", $_SESSION['username']);
-// $stmt->execute();
-// $result = $stmt->get_result();
+$sql = "SELECT subjects.id,subject_name, subject_color FROM subjects INNER JOIN student_subjects  ON subjects.id = student_subjects.subject_id WHERE student_subjects.student_email = ? ";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $_SESSION['username']);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// $subjects = [];
-// while ($row = $result->fetch_assoc()) {
-//     $subjects[] = $row;
-// }
+$subjects = [];
+while ($row = $result->fetch_assoc()) {
+    $subjects[] = $row;
+}
 
-// $stmt->close();
-// $conn->close();
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -39,15 +39,17 @@ require '../php/db.php';
         <h1>SAMS</h1>
         <nav>
             <a href="#">Profile</a>
-            <a href="#">Logout</a>
+            <a href="../index.html">Logout</a>
         </nav>
     </header>
     <main>
-        <h2>Subjects Enrolled</h2>
+        <h2>Subjects Handled</h2>
         <div class="subjects-container">
             <?php foreach ($subjects as $subject): ?>
-                <div class="subject-card" style="background-color: <?= $subject['subject_color'] ?>;">
-                    <p><?= $subject['subject_name'] ?></p>
+                <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
+                    <a href="student_subjectpage.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>" style="text-decoration: none; color: inherit;">
+                        <p><?= htmlspecialchars($subject['subject_name']) ?></p>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
