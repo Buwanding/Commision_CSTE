@@ -31,7 +31,7 @@
                 $activity_result = $activity_stmt->get_result();
                 
                 while ($activity = $activity_result->fetch_assoc()) {
-                    echo "<li><a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id']) . "'>" . htmlspecialchars($activity['activity_name']) . "</a>: " . htmlspecialchars($activity['description']) . "</li>";
+                    echo "<li><a href='student_activity.php?activity_id=" . htmlspecialchars($activity['id']) . "'>" . htmlspecialchars($activity['activity_name']) . "</a>: " . htmlspecialchars($activity['description']) . "</li>";
                 }
                 
                 $activity_stmt->close();
