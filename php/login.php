@@ -31,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              header("Location: index.html");
         }
     } else {
-        echo "No user found with that email.";
+         alert ("Wrong Credentials");
+         header("Location: index.html");
     }
 
     $stmt->close();
