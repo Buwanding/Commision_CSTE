@@ -1,4 +1,15 @@
-<?php $subject_id = $_REQUEST["subject_id"]; ?>
+<?php
+$subject_id = isset($_REQUEST["subject_id"]) ? $_REQUEST["subject_id"] : '';
+$subject_name = isset($_REQUEST["subject"]) ? htmlspecialchars($_REQUEST["subject"]) : '';
+
+// Ensure subject_id and subject are set and valid
+if (empty($subject_id) || empty($subject_name)) {
+    // Handle the error or redirect to a different page
+    echo "Subject not found!";
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,20 +17,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($_REQUEST["subject"]); ?></title>
     <link rel="stylesheet" href="./teacher-styles/subject-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <header>
-        <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1>
-        <nav>
-            <a href="dashboard.php">Back to Dashboard</a>
-            <a href="../index.html">Logout</a>
-        </nav>
-    </header>
-    <main>
-        <div class="subject-details">
-            <p>Details for subject: <?php echo htmlspecialchars($_REQUEST["subject"]); ?></p>
-            <!-- Form to add activities -->
+<header>
+        <div class="header-container">
+
+            <div class="system-name">
+                <a href="dashboard.php"><h1>STUDENT ACTIVITY MANAGEMENT SYSTEM</h1></a>
+            </div>
+
+            <div class="icons">
+                <div class="notification-icon">
+                    <a href="#">
+                    	<i style="font-size:24px" class="fa">&#xf0f3;</i>
+                    </a>
+                </div>
+
+                <div class="profile-icon">
+                    <a href="#">
+						<i style="font-size:24px" class="fa">&#xf007;</i>
+                    </a>
+                </div>
+
+                <div class="logout">
+                    <a href="../index.html">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+</header>
+
+<br>
+<br>
+
+<main>
+
+
+
+    <div class="subject-details"> 
+        <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
+
+
+        <br>
+
+        <div class="button-container">
+            <button class="button">ADD ACTIVITY</button>
+            <button class="button">LIST OF STUDENTS</button>
+            <button class="button">LIST OF PARENTS</button>
+        </div>
+
+        <br>
+
+
+        <!-- Form to add activities -->
+        <div class="form-container">
             <h2>Add Activity</h2>
+            <br>
             <form action="../php/add_activity.php" method="post">
                 <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
                 <label for="activity_name">Activity Name:</label>
@@ -28,19 +81,43 @@
                 <textarea id="description" name="description"></textarea>
                 <label for="deadline">Deadline:</label>
                 <input type="date" id="deadline" name="deadline" required>
+                <br>
                 <button type="submit">Add Activity</button>
             </form>
-            
-            <!-- Form to assign students -->
+        </div>
+
+        <br>
+
+        <br>
+
+        <!-- Form to assign students -->
+        <div class="form-container">
             <h2>Assign Student</h2>
+            <br>
             <form action="../php/assign_student.php" method="post">
                 <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
                 <label for="student_name">Student Name:</label>
                 <input type="text" id="student_name" name="student_name" required>
+                <br>
                 <button type="submit">Assign Student</button>
             </form>
+        </div>
 
-            <!-- Display activities and students -->
+        <br>
+
+         <!-- Delete Subject Button -->
+         <form action="../php/delete_subject.php" method="post">
+            <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
+            <h2> Delete Subject </h2>
+            <button type="submit" class="delete-button">Delete Subject</button>
+        </form>
+
+        <br>
+        <br>
+        <br>
+
+        <!-- Display activities and students -->
+        <div class="list-container">
             <h2>Activities</h2>
             <ul>
                 <?php
@@ -59,7 +136,9 @@
                 $activity_stmt->close();
                 ?>
             </ul>
-            
+        </div>
+
+        <div class="list-container">
             <h2>Assigned Students</h2>
             <ul>
                 <?php
@@ -75,10 +154,20 @@
                 }
                 
                 $student_stmt->close();
-                // $conn->close(); // Close the connection after all queries
                 ?>
             </ul>
         </div>
-    </main>
+    </div>
+</main>
+
+<br>
+<br>
+
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>

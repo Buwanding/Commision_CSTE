@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 require '../php/db.php';
 
 // Fetch subjects from the database
-$sql = "SELECT subjects.id,subject_name, subject_color FROM subjects INNER JOIN student_subjects  ON subjects.id = student_subjects.subject_id WHERE student_subjects.student_email = ? ";
+$sql = "SELECT subjects.id,subject_name, subject_color FROM subjectss INNER JOIN student_subjects  ON subjects.id = student_subjects.subject_id WHERE student_subjects.student_email = ? ";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $_SESSION['username']);
 $stmt->execute();
