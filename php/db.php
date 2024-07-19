@@ -75,12 +75,12 @@ if (mysqli_query($conn, $query)) {
 
 $query = "CREATE TABLE IF NOT EXISTS activity_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    subject_id INT NOT NULL,
+    activity_id INT NOT NULL,
     student_email VARCHAR(255) NOT NULL,
     student_file BLOB,
     remarks TEXT,
     timepass DATE NOT NULL,
-    FOREIGN KEY (subject_id) REFERENCES activities(id)
+    FOREIGN KEY (activity_id) REFERENCES activities(id)
 );";
 if (mysqli_query($conn, $query)) {
     // echo "Student_subjects table created successfully or already exists.<br>";
