@@ -2,39 +2,66 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #afe5fd;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #08b1ff;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
+.header-container {
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.system-name h1 {
     margin: 0;
+    cursor: pointer;
 }
 
-nav {
-    margin-top: 10px;
-}
-
-nav a {
-    color: #fff;
+.system-name a {
     text-decoration: none;
-    margin: 0 10px;
-    padding: 5px 10px;
-    background-color: #444;
-    border-radius: 5px;
+    color: white;
 }
 
-nav a:hover {
-    background-color: #555;
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons > div {
+    margin-left: 15px;
+}
+
+.icons img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.logout a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.logout a:hover {
+    background-color: white;
+    color: #333;
 }
 
 main {
-    max-width: 800px;
+    max-width: 1500px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -48,6 +75,8 @@ main {
 }
 
 .subject-details p {
+    font-size: 24px;
+    font-weight: bold;
     margin: 0 0 20px;
 }
 
@@ -69,7 +98,8 @@ main {
 }
 
 .form-container input[type="text"],
-.form-container textarea {
+.form-container textarea,
+.form-container input[type="date"] {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -79,7 +109,7 @@ main {
 
 .form-container button {
     padding: 10px;
-    background-color: #333;
+    background-color: #00aa52;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -87,8 +117,31 @@ main {
 }
 
 .form-container button:hover {
-    background-color: #444;
+    background-color: #00e770;
 }
+
+/* Other styles... */
+
+.delete-button {
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.delete-button:hover {
+    background-color: #ff3333;
+}
+
+/* Other styles... */
+
+
 
 .list-container {
     margin-bottom: 20px;
@@ -110,3 +163,45 @@ main {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%; /* Adjust width as needed */
+  }
+  
+  .button {
+    background-color: #00aa52; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 150px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+
+  .button:hover {
+    background-color: #00e770;
+  }
+
+  
+footer {
+    background-color: #171717;
+    color: white;
+    text-align: center;
+    padding: 1px;
+    width: auto;
+    bottom: 0;
+}
+
+.footer-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+

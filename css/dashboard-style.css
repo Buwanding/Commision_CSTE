@@ -2,24 +2,57 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #afe5fd;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+.header-container {
+    background-color: #08b1ff;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header nav a {
+.system-name h1 {
+    margin: 0;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons > div {
+    margin-left: 15px;
+}
+
+.icons img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.logout a {
     color: white;
-    margin: 0 15px;
+    margin-left: 15px;
     text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.logout a:hover {
+    background-color: white;
+    color: #333;
 }
 
 main {
+    max-width: 1500px;
+    margin: 20px auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -50,29 +83,44 @@ h2 {
 
 .add-subject-form {
     display: flex;
-    flex-direction: column;
-    max-width: 300px;
-}
-
-.add-subject-form label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.add-subject-form input, .add-subject-form button {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
+    flex-direction: baseline;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
-.add-subject-form button {
-    background-color: #333;
+.form-group {
+    display: flex;
+    flex-direction: baseline;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 200px; /* Adjust width as needed */
+}
+
+button {
+    background-color: #00aa52;
     color: white;
-    cursor: pointer;
+    padding: 10px 100px;
     border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
-.add-subject-form button:hover {
-    background-color: #555;
+button:hover {
+    background-color: #00e770;
 }
