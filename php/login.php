@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($id, $hashed_password, $role);
-    
+
     if ($stmt->num_rows > 0) {
         $stmt->fetch();
         if (password_verify($password, $hashed_password)) {
@@ -19,20 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $role;
-            if($role ==="teacher"){
+            if ($role === "teacher") {
                 // Redirect to the dashboard or any other page
                 header("Location: ../teachers-page/dashboard.php");
-            }else{
+            } else {
                 header("Location: ../student-page/dashboard.php");
             }
-            
+            exit();
         } else {
-            alert ("Wrong Credentials");
-             header("Location: index.html");
+            echo "<script>alert('Wrong Credentials'); window.location.href = '../index.html';</script>";
         }
     } else {
-         alert ("Wrong Credentials");
-         header("Location: index.html");
+        echo "<script>alert('Wrong Credentials'); window.location.href = '../index.html';</script>";
     }
 
     $stmt->close();
