@@ -1,12 +1,11 @@
 <?php
 session_start();
-// Ensure database connection is included
 require '../php/db.php';
 
 $activity_id = $_REQUEST['activity_id'];
 
 // Fetch activity details based on activity_id
-$activity_query = "SELECT student_email FROM activity_details WHERE id = ?";
+$activity_query = "SELECT student_email, remarks FROM activity_details WHERE id = ?";
 $activity_stmt = $conn->prepare($activity_query);
 $activity_stmt->bind_param("i", $activity_id);
 $activity_stmt->execute();
@@ -16,6 +15,15 @@ $activity_stmt->close();
 
 $student_email = $_SESSION['username'];
 $timepass = date('Y-m-d'); // Current date
+
+// Check if the student already passed the activity
+$passed_query = "SELECT COUNT(*) AS count FROM activity_details WHERE activity_id = ? AND student_email = ?";
+$passed_stmt = $conn->prepare($passed_query);
+$passed_stmt->bind_param("is", $activity_id, $student_email);
+$passed_stmt->execute();
+$passed_result = $passed_stmt->get_result();
+$passed = $passed_result->fetch_assoc()['count'];
+$passed_stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -37,16 +45,24 @@ $timepass = date('Y-m-d'); // Current date
     <main>
         <div class="upload-file">
             <h2>Upload File</h2>
-            <form action="../php/upload_file.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="activity_id" value="<?php echo htmlspecialchars($activity_id); ?>">
-                <input type="hidden" name="student_email" value="<?php echo htmlspecialchars($student_email); ?>">
-                <input type="hidden" name="timepass" value="<?php echo htmlspecialchars($timepass); ?>">
-                <label for="student_file">Upload your file:</label>
-                <input type="file" id="student_file" name="student_file" required>
-                <button type="submit">Upload File</button>
-            </form>
+            <?php if ($passed > 0): ?>
+                <p>You have already submitted this activity.</p>
+                <?php if (!empty($activity['remarks'])): ?>
+                    <p>Remarks: <?php echo htmlspecialchars($activity['remarks']); ?></p>
+                <?php else: ?>
+                    <p>Remarks: Still not graded</p>
+                <?php endif; ?>
+            <?php else: ?>
+                <form action="../php/upload_file.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="activity_id" value="<?php echo htmlspecialchars($activity_id); ?>">
+                    <input type="hidden" name="student_email" value="<?php echo htmlspecialchars($student_email); ?>">
+                    <input type="hidden" name="timepass" value="<?php echo htmlspecialchars($timepass); ?>">
+                    <label for="student_file">Upload your file:</label>
+                    <input type="file" id="student_file" name="student_file" required>
+                    <button type="submit">Upload File</button>
+                </form>
+            <?php endif; ?>
         </div>
     </main>
 </body>
 </html>
-

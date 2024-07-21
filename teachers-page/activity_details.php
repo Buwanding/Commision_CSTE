@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["activity_id"])) {
 
     // Execute the statement
     if ($stmt->execute()) {
-        echo "Remarks updated successfully!";
+        // echo "Remarks updated successfully!";
+         echo "<script>alert('Remarks updated successfully!');</script>";
     } else {
         echo "Error updating remarks: " . $conn->error;
     }

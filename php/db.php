@@ -30,7 +30,18 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo "Error creating users table: " . mysqli_error($conn) . "<br>";
 }
-
+$query = "CREATE TABLE IF NOT EXISTS parents (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    student_id INT(6) UNSIGNED,
+    parents_name VARCHAR(30) NOT NULL,
+    contact_number VARCHAR(15) NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES users(id)
+)";
+if (mysqli_query($conn, $query)) {
+    // echo "Users table created successfully or already exists.<br>";
+} else {
+    echo "Error creating users table: " . mysqli_error($conn) . "<br>";
+}
 // Create subjects table if not exists
 $query = "CREATE TABLE IF NOT EXISTS subjects (
     id INT AUTO_INCREMENT PRIMARY KEY,

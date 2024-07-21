@@ -31,10 +31,12 @@
                 <div class="input-group">
                     <label for="role">Role</label>
                     <select id="role" name="role" required>
+                        <option value="" disabled selected>Select your role</option>
                         <option value="teacher">Teacher</option>
                         <option value="student">Student</option>
                     </select>
                 </div>
+                <div id="additional-fields"></div>
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="junegwapooo123" required>
@@ -43,5 +45,29 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const roleSelect = document.getElementById('role');
+            const additionalFields = document.getElementById('additional-fields');
+
+            roleSelect.addEventListener('change', function () {
+                if (roleSelect.value === 'student') {
+                    additionalFields.innerHTML = `
+                        <div class="input-group">
+                            <label for="parent-name">Parent's Name</label>
+                            <input type="text" id="parent-name" name="parent_name" placeholder="Parent's Name" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="parent-contact-number">Parent's Contact Number</label>
+                            <input type="text" id="parent-contact-number" name="parent_contact_number" placeholder="Parent's Contact Number" required>
+                        </div>
+                    `;
+                } else {
+                    additionalFields.innerHTML = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
