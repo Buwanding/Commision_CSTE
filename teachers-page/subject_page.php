@@ -86,7 +86,6 @@ if (empty($subject_id) || empty($subject_name)) {
         </div>
 
         <br>
-
         <br>
 
         <!-- Form to assign students -->
@@ -101,15 +100,6 @@ if (empty($subject_id) || empty($subject_name)) {
                 <button type="submit">Assign Student</button>
             </form>
         </div>
-
-        <br>
-
-         <!-- Delete Subject Button -->
-         <form action="../php/delete_subject.php" method="post">
-            <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
-            <h2> Delete Subject </h2>
-            <button type="submit" class="delete-button">Delete Subject</button>
-        </form>
 
         <br>
         <br>

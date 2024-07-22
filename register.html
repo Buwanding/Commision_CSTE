@@ -7,27 +7,37 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+
     <div class="container">
+
         <div class="form-container">
+
             <h1>SAMS</h1>
+
             <p>Your Partner in Student Success</p>
+
             <form id="registerForm" action="./php/register.php" method="POST">
+            
                 <div class="input-group">
                     <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" name="first_name" placeholder="June" required>
+                    <input type="text" id="first-name" name="first_name" placeholder="Enter your First Name" required>
                 </div>
+
                 <div class="input-group">
                     <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" name="last_name" placeholder="Mapano" required>
+                    <input type="text" id="last-name" name="last_name" placeholder="Enter your Last Name" required>
                 </div>
+
                 <div class="input-group">
                     <label for="email">E-mail Address</label>
-                    <input type="email" id="email" name="email" placeholder="Junemapagmahal101@gmail.com" required>
+                    <input type="email" id="email" name="email" placeholder="Enter your E-mail Address" required>
                 </div>
+
                 <div class="input-group">
                     <label for="contact-number">Contact Number</label>
-                    <input type="text" id="contact-number" name="contact_number" placeholder="09295834504" required>
+                    <input type="text" id="contact-number" name="contact_number" placeholder="Enter your Contact Number" required>
                 </div>
+
                 <div class="input-group">
                     <label for="role">Role</label>
                     <select id="role" name="role" required>
@@ -36,13 +46,21 @@
                         <option value="student">Student</option>
                     </select>
                 </div>
+
                 <div id="additional-fields"></div>
+
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="junegwapooo123" required>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
+
                 <button type="submit" id="sign-in-button">SIGN IN</button>
+
             </form>
+
+            <br>
+            <br>
+
         </div>
     </div>
 
