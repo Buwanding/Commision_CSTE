@@ -8,14 +8,37 @@
     <link rel="stylesheet" href="./student-css/student-page.css">
 </head>
 <body>
-    <header>
-        <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1>
-        <nav>
-            <a href="dashboard.php">Back to Dashboard</a>
-            <a href="../index.html">Logout</a>
-        </nav>
-    </header>
+
+<header>
+        <div class="header-container">
+
+            <!-- <div class="logo">
+                <img>
+            </div> -->
+
+            <div class="system-name">
+                <h1>Student Activity Management System</h1>
+            </div>
+            <div class="icons">
+                <div class="notification-icon">
+                    <a href
+                    	<i style="font-size:24px" class="fa">&#xf0f3;</i>
+                    </a>
+                </div>
+                <div class="profile-icon">
+                    <a href="#">
+						<i style="font-size:24px" class="fa">&#xf007;</i>
+                    </a>
+                </div>
+                <div class="logout">
+                    <a href="../index.html">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+</header>
+
     <main>
+
         <div class="subject-details">
           
             <!-- Display activities and students -->
@@ -38,6 +61,7 @@
                 ?>
             </ul>
         </div>
+        
     </main>
 </body>
 </html>

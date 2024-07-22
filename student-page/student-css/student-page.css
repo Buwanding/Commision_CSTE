@@ -5,32 +5,46 @@ body {
     background-color: #f4f4f4;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+.header-container {
+    background-color: #08b1ff;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header h1 {
+.system-name h1 {
     margin: 0;
 }
 
-nav {
-    margin-top: 10px;
+.icons {
+    display: flex;
+    align-items: center;
 }
 
-nav a {
-    color: #fff;
+.icons > div {
+    margin-left: 15px;
+}
+
+.icons img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.logout a {
+    color: white;
+    margin-left: 15px;
     text-decoration: none;
-    margin: 0 10px;
     padding: 5px 10px;
-    background-color: #444;
-    border-radius: 5px;
+    border: 1px solid white;
+    border-radius: 4px;
 }
 
-nav a:hover {
-    background-color: #555;
+.logout a:hover {
+    background-color: white;
+    color: #333;
 }
 
 main {

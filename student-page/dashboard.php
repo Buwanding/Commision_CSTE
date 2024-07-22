@@ -38,7 +38,7 @@ $conn->close();
     <header>
         <h1>SAMS</h1>
         <nav>
-            <a href="#">Profile</a>
+            <a href="#">PROFS</a>
             <a href="../index.html">Logout</a>
         </nav>
     </header>
