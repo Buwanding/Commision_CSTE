@@ -1,4 +1,9 @@
-<?php $subject_id = $_REQUEST["subject_id"]; ?>
+<?php 
+$subject_id = $_REQUEST["subject_id"]; 
+$subject_name = isset($_REQUEST["subject"]) ? htmlspecialchars($_REQUEST["subject"]) : '';
+$subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["subject_des"]) : '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +23,9 @@
     <main>
         <div class="subject-details">
           
-            <!-- Display activities and students -->
-            <h2>Activities</h2>
+            <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
+            <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2>
+
             <ul>
                 <?php
                 // Fetch activities for the subject

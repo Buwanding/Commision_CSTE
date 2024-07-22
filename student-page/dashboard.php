@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 require '../php/db.php';
 
 // Fetch subjects from the database
-$sql = "SELECT subjects.id,subject_name, subject_color FROM subjects INNER JOIN student_subjects  ON subjects.id = student_subjects.subject_id WHERE student_subjects.student_email = ? ";
+$sql = "SELECT subjects.id,subject_name, subject_color, subject_description FROM subjects INNER JOIN student_subjects  ON subjects.id = student_subjects.subject_id WHERE student_subjects.student_email = ? ";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $_SESSION['username']);
 $stmt->execute();
@@ -47,7 +47,7 @@ $conn->close();
         <div class="subjects-container">
             <?php foreach ($subjects as $subject): ?>
                 <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
-                    <a href="student_subjectpage.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>" style="text-decoration: none; color: inherit;">
+                    <a href="student_subjectpage.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>&subject_des=<?= $subject['subject_description'] ?>" style="text-decoration: none; color: inherit;">
                         <p><?= htmlspecialchars($subject['subject_name']) ?></p>
                     </a>
                 </div>
