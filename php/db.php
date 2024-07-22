@@ -49,6 +49,7 @@ $query = "CREATE TABLE IF NOT EXISTS subjects (
     username VARCHAR(50) NOT NULL,
     subject_name VARCHAR(255) NOT NULL,
     subject_color VARCHAR(7) NOT NULL,
+    subject_description VARCHAR(255)  NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (username) REFERENCES users(email)
 )";
@@ -92,6 +93,7 @@ $query = "CREATE TABLE IF NOT EXISTS activity_details (
     student_file BLOB,
     remarks TEXT,
     timepass DATE NOT NULL,
+    status VARCHAR(255),
     FOREIGN KEY (activity_id) REFERENCES activities(id)
 );";
 if (mysqli_query($conn, $query)) {

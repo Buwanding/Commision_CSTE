@@ -20,15 +20,16 @@ if ($passed > 0) {
     exit;
 }
 
-if(isset($_FILES['student_file']) && $_FILES['student_file']['error'] == 0) {
+if (isset($_FILES['student_file']) && $_FILES['student_file']['error'] == 0) {
     // Get file content
     $student_file = file_get_contents($_FILES['student_file']['tmp_name']);
-    
+    $status = "done";
+
     // Insert file into the database
-    $insert_query = "INSERT INTO activity_details (activity_id, student_email, student_file, timepass) VALUES (?, ?, ?, ?)";
+    $insert_query = "INSERT INTO activity_details (activity_id, student_email, student_file, timepass, status) VALUES (?, ?, ?, ?, ?)";
     $insert_stmt = $conn->prepare($insert_query);
-    $insert_stmt->bind_param("isss", $activity_id, $student_email, $student_file, $timepass);
-    
+    $insert_stmt->bind_param("issss", $activity_id, $student_email, $student_file, $timepass, $status);
+
     if ($insert_stmt->execute()) {
         // Redirect or inform the user of the successful upload
         header("Location: success_page.php");

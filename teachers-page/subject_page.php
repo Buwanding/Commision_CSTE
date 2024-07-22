@@ -1,7 +1,7 @@
 <?php
 $subject_id = isset($_REQUEST["subject_id"]) ? $_REQUEST["subject_id"] : '';
 $subject_name = isset($_REQUEST["subject"]) ? htmlspecialchars($_REQUEST["subject"]) : '';
-
+$subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["subject_des"]) : '';
 // Ensure subject_id and subject are set and valid
 if (empty($subject_id) || empty($subject_name)) {
     // Handle the error or redirect to a different page
@@ -53,10 +53,9 @@ if (empty($subject_id) || empty($subject_name)) {
 <main>
 
 
-
     <div class="subject-details"> 
         <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
-
+            <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2>
 
         <br>
 
@@ -157,6 +156,39 @@ if (empty($subject_id) || empty($subject_name)) {
                 ?>
             </ul>
         </div>
+       <div class="list-container">
+    <h2>List Parents</h2>
+    <ul>
+        <?php
+        $stud_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
+        $stud_stmt = $conn->prepare($stud_query);
+        $stud_stmt->bind_param("i", $subject_id);
+        $stud_stmt->execute();
+        $stud_result = $stud_stmt->get_result();
+
+        while ($stud = $stud_result->fetch_assoc()) {
+            $parent_query = "SELECT parents.parents_name, parents.contact_number 
+                             FROM parents 
+                             INNER JOIN users ON parents.student_id = users.id 
+                             WHERE users.email = ?";
+            $parent_stmt = $conn->prepare($parent_query);
+            $parent_stmt->bind_param("s", $stud['student_email']); // Assuming email is a string
+            $parent_stmt->execute();
+            $parent_result = $parent_stmt->get_result();
+            
+            while ($parent = $parent_result->fetch_assoc()) {
+                echo "<li>" . htmlspecialchars($parent['parents_name']) . "</li>";
+                echo "<li>" . htmlspecialchars($parent['contact_number']) . "</li>";
+            }
+            $parent_stmt->close();
+        }
+
+        $stud_stmt->close();
+        ?>
+    </ul>
+</div>
+
+
     </div>
 </main>
 

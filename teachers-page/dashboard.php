@@ -11,19 +11,21 @@ if (!isset($_SESSION['username'])) {
 require '../php/db.php';
 
 // Handle new subject submission
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['subject_name']) && isset($_POST['subject_color'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['subject_name']) && isset($_POST['subject_color']) && isset($_POST['subject_description'])) {
     $subject_name = $_POST['subject_name'];
     $subject_color = $_POST['subject_color'];
+    $subject_description = $_POST['subject_description'];
 
-    $sql = "INSERT INTO subjects (username, subject_name, subject_color) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO subjects (username, subject_name, subject_color, subject_description) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $_SESSION['username'], $subject_name, $subject_color);
+    $stmt->bind_param("ssss", $_SESSION['username'], $subject_name, $subject_color, $subject_description);
     $stmt->execute();
     $stmt->close();
 }
 
+
 // Fetch subjects from the database
-$sql = "SELECT id, subject_name, subject_color FROM subjects WHERE username = ?";
+$sql = "SELECT id, subject_name, subject_color, subject_description FROM subjects WHERE username = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $_SESSION['username']);
 $stmt->execute();
@@ -85,7 +87,7 @@ $conn->close();
         <div class="subjects-container">
             <?php foreach ($subjects as $subject): ?>
                 <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
-                    <a href="subject_page.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>" style="text-decoration: none; color: inherit;">
+                    <a href="subject_page.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>&subject_des=<?= $subject['subject_description'] ?>" style="text-decoration: none; color: inherit;">
                         <p><?= htmlspecialchars($subject['subject_name']) ?></p>
                     </a>
                 </div>
@@ -96,22 +98,27 @@ $conn->close();
 
         <h2>Add New Subject</h2>
 
-        <form action="" method="post" class="add-subject-form">
+      <form action="" method="post" class="add-subject-form">
 
-            <div class="form-group">
-                <label for="subject_name">Subject Name: &nbsp&nbsp</label>
-                <input type="text" id="subject_name" name="subject_name" required>
-            </div>
+    <div class="form-group">
+        <label for="subject_name">Subject Name: &nbsp&nbsp</label>
+        <input type="text" id="subject_name" name="subject_name" required>
+    </div>
 
-            <div class="form-group">
-                <label for="subject_color">Subject Color: &nbsp&nbsp</label>
-                <input type="color" id="subject_color" name="subject_color" required>
-            </div>
+    <div class="form-group">
+        <label for="subject_color">Subject Color: &nbsp&nbsp</label>
+        <input type="color" id="subject_color" name="subject_color" required>
+    </div>
 
+    <div class="form-group">
+        <label for="subject_description">Subject Description: &nbsp&nbsp</label>
+        <textarea id="subject_description" name="subject_description" rows="4" cols="50" required></textarea>
+    </div>
 
-            <button type="submit">Add Subject</button>
-        
-        </form>
+    <button type="submit">Add Subject</button>
+
+</form>
+
 
         <br>
         <br>
