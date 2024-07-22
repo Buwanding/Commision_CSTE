@@ -42,12 +42,22 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         </div>
 </header>
 
+<br>
+
     <main>
 
         <div class="subject-details">
           
             <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
-            <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2>
+            <center> <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2> </center> 
+
+            <br>
+
+            <hr>
+
+            <br>
+
+            <h2> Activities: </h2> 
 
             <ul>
                 <?php
@@ -69,5 +79,13 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         </div>
         
     </main>
+
+    <footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+    </footer>   
+
+
 </body>
 </html>

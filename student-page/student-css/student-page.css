@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #afe5fd;
 }
 
 .header-container {
@@ -65,62 +65,81 @@ main {
     margin: 0 0 20px;
 }
 
-.form-container {
+main {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.upload-file {
+    text-align: center;
+    padding: 10px 30px;
+}
+
+.submitted-message {
+    color: #28a745;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-.form-container h2 {
-    margin-bottom: 10px;
+.remarks {
+    color: #6c757d;
+    margin-bottom: 20px;
 }
 
-.form-container form {
+form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.form-container label {
-    margin-bottom: 5px;
-}
-
-.form-container input[type="text"],
-.form-container textarea {
-    padding: 10px;
+label {
+    font-weight: bold;
     margin-bottom: 10px;
+    color: #333;
+}
+
+input[type="file"] {
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 20px;
     font-size: 16px;
 }
 
-.form-container button {
-    padding: 10px;
-    background-color: #333;
+.upload-btn {
+    background-color: #007bff;
     color: #fff;
+    padding: 10px 120px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.form-container button:hover {
-    background-color: #444;
+.upload-btn:hover {
+    background-color: #0056b3;
 }
 
-.list-container {
-    margin-bottom: 20px;
+footer {
+    background-color: #171717;
+    color: white;
+    text-align: center;
+    padding: 1px;
+    width: auto;
+    bottom: 0;
 }
 
-.list-container h2 {
-    margin-bottom: 10px;
-}
-
-.list-container ul {
-    list-style: none;
-    padding: 0;
-}
-
-.list-container li {
-    padding: 10px;
-    margin-bottom: 5px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.footer-container {
+    max-width: 800px;
+    margin: 0 auto;
 }

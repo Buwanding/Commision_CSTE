@@ -47,6 +47,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -59,7 +60,7 @@ $conn->close();
             </div> -->
 
             <div class="system-name">
-                <h1>Student Activity Management System</h1>
+                <h1>STUDENT ACTIVITY MANAGEMENT SYSTEM</h1>
             </div>
             <div class="icons">
                 <div class="notification-icon">
@@ -82,51 +83,59 @@ $conn->close();
 <br>
 <br>
 
-    <main>
-        <h2>Subjects Handled</h2>
-        <div class="subjects-container">
-            <?php foreach ($subjects as $subject): ?>
-                <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
-                    <a href="subject_page.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>&subject_des=<?= $subject['subject_description'] ?>" style="text-decoration: none; color: inherit;">
-                        <p><?= htmlspecialchars($subject['subject_name']) ?></p>
-                    </a>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        
-        <br><br>
-
-        <h2>Add New Subject</h2>
-
-      <form action="" method="post" class="add-subject-form">
-
-    <div class="form-group">
-        <label for="subject_name">Subject Name: &nbsp&nbsp</label>
-        <input type="text" id="subject_name" name="subject_name" required>
+<main>
+    <h2>Subjects Handled</h2>
+    <div class="subjects-container">
+        <?php foreach ($subjects as $subject): ?>
+            <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">
+                <a href="subject_page.php?subject=<?= urlencode($subject['subject_name']) ?>&subject_id=<?= $subject['id'] ?>&subject_des=<?= urlencode($subject['subject_description']) ?>" style="text-decoration: none; color: inherit;">
+                    <p><?= htmlspecialchars($subject['subject_name']) ?></p>
+                </a>
+            </div>
+        <?php endforeach; ?>
     </div>
+    
+    <br><br>
 
-    <div class="form-group">
-        <label for="subject_color">Subject Color: &nbsp&nbsp</label>
-        <input type="color" id="subject_color" name="subject_color" required>
-    </div>
-
-    <div class="form-group">
-        <label for="subject_description">Subject Description: &nbsp&nbsp</label>
-        <textarea id="subject_description" name="subject_description" rows="4" cols="50" required></textarea>
-    </div>
-
-    <button type="submit">Add Subject</button>
-
-</form>
+    <h2>Add New Subject</h2>
 
 
-        <br>
-        <br>
-
-    </main>
+    <form action="" method="post" class="add-subject-form">
 
     <br>
-    <br>
+
+    <form action="" method="post" class="add-subject-form">
+            <div class="form-group">
+                <label for="subject_name">Subject Name:</label>
+                <input type="text" id="subject_name" name="subject_name" placeholder="Enter subject name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject_color">Subject Color:</label>
+                <input type="color" id="subject_color" name="subject_color" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject_description">Subject Description:</label>
+                <textarea id="subject_description" name="subject_description" rows="4" cols="50" placeholder="Enter subject description" required></textarea>
+            </div>
+
+            <button type="submit">Add Subject</button>
+        <br>
+
+    </form>
+
+    <br><br>
+
+</main>
+
+<br><br>
+
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+</footer>
 
 </body>
 </html>

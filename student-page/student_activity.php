@@ -32,9 +32,10 @@ $passed_stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload File</title>
-    <link rel="stylesheet" href="../student-css/student-page.css">
+    <link rel="stylesheet" href="./student-css/student-page.css">
 </head>
 <body>
+
 <header>
         <div class="header-container">
 
@@ -62,15 +63,19 @@ $passed_stmt->close();
             </div>
         </div>
 </header>
-    <main>
+
+<br>
+<br>
+
+<main>
         <div class="upload-file">
             <h2>Upload File</h2>
             <?php if ($passed > 0): ?>
-                <p>You have already submitted this activity.</p>
+                <p class="submitted-message">You have already submitted this activity.</p>
                 <?php if (!empty($activity['remarks'])): ?>
-                    <p>Remarks: <?php echo htmlspecialchars($activity['remarks']); ?></p>
+                    <p class="remarks">Remarks: <?php echo htmlspecialchars($activity['remarks']); ?></p>
                 <?php else: ?>
-                    <p>Remarks: Still not graded</p>
+                    <p class="remarks">Remarks: Still not graded</p>
                 <?php endif; ?>
             <?php else: ?>
                 <form action="../php/upload_file.php" method="post" enctype="multipart/form-data">
@@ -79,10 +84,22 @@ $passed_stmt->close();
                     <input type="hidden" name="timepass" value="<?php echo htmlspecialchars($timepass); ?>">
                     <label for="student_file">Upload your file:</label>
                     <input type="file" id="student_file" name="student_file" required>
-                    <button type="submit">Upload File</button>
+                    <button type="submit" class="upload-btn">Upload File</button>
                 </form>
             <?php endif; ?>
         </div>
     </main>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>
