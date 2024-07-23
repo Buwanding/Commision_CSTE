@@ -32,15 +32,41 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-    <header>
-        <h1>SAMS</h1>
-        <nav>
-            <a href="#">Profile</a>
-            <a href="../index.html">Logout</a>
-        </nav>
-    </header>
+<header>
+        <div class="header-container">
+
+            <!-- <div class="logo">
+                <img>
+            </div> -->
+
+            <div class="system-name">
+                <h1>Student Activity Management System</h1>
+            </div>
+            <div class="icons">
+                <div class="notification-icon">
+                    <a href
+                    	<i style="font-size:24px" class="fa">&#xf0f3;</i>
+                    </a>
+                </div>
+                <div class="profile-icon">
+                    <a href="#">
+						<i style="font-size:24px" class="fa">&#xf007;</i>
+                    </a>
+                </div>
+                <div class="logout">
+                    <a href="../index.html">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+</header>
+
+<br>
+<br>
+
     <main>
         <h2>Subjects Handled</h2>
         <div class="subjects-container">
@@ -52,6 +78,20 @@ $conn->close();
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <br>
+        <br>
     </main>
+
+    <br>
+    <br>
+    <br>
+
+    <footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+    </footer>
+
 </body>
 </html>

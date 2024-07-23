@@ -55,12 +55,11 @@ if (empty($subject_id) || empty($subject_name)) {
 
     <div class="subject-details"> 
         <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
-            <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2>
+        <center> <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2> </center> 
 
         <br>
 
         <div class="button-container">
-            <button class="button">ADD ACTIVITY</button>
             <button class="button">LIST OF STUDENTS</button>
             <button class="button">LIST OF PARENTS</button>
         </div>

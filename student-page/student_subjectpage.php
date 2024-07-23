@@ -13,18 +13,51 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
     <link rel="stylesheet" href="./student-css/student-page.css">
 </head>
 <body>
-    <header>
-        <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1>
-        <nav>
-            <a href="dashboard.php">Back to Dashboard</a>
-            <a href="../index.html">Logout</a>
-        </nav>
-    </header>
+
+<header>
+        <div class="header-container">
+
+            <!-- <div class="logo">
+                <img>
+            </div> -->
+
+            <div class="system-name">
+                <h1>Student Activity Management System</h1>
+            </div>
+            <div class="icons">
+                <div class="notification-icon">
+                    <a href
+                    	<i style="font-size:24px" class="fa">&#xf0f3;</i>
+                    </a>
+                </div>
+                <div class="profile-icon">
+                    <a href="#">
+						<i style="font-size:24px" class="fa">&#xf007;</i>
+                    </a>
+                </div>
+                <div class="logout">
+                    <a href="../index.html">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+</header>
+
+<br>
+
     <main>
+
         <div class="subject-details">
           
             <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
-            <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2>
+            <center> <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2> </center> 
+
+            <br>
+
+            <hr>
+
+            <br>
+
+            <h2> Activities: </h2> 
 
             <ul>
                 <?php
@@ -44,6 +77,15 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
                 ?>
             </ul>
         </div>
+        
     </main>
+
+    <footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+    </footer>   
+
+
 </body>
 </html>

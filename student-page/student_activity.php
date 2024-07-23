@@ -35,22 +35,47 @@ $passed_stmt->close();
     <link rel="stylesheet" href="./student-css/student-page.css">
 </head>
 <body>
-    <header>
-        <h1>Upload Your File</h1>
-        <nav>
-            <a href="dashboard.php">Back to Dashboard</a>
-            <a href="../index.html">Logout</a>
-        </nav>
-    </header>
-    <main>
+
+<header>
+        <div class="header-container">
+
+            <!-- <div class="logo">
+                <img>
+            </div> -->
+
+            <div class="system-name">
+                <h1>Student Activity Management System</h1>
+            </div>
+            <div class="icons">
+                <div class="notification-icon">
+                    <a href
+                    	<i style="font-size:24px" class="fa">&#xf0f3;</i>
+                    </a>
+                </div>
+                <div class="profile-icon">
+                    <a href="#">
+						<i style="font-size:24px" class="fa">&#xf007;</i>
+                    </a>
+                </div>
+                <div class="logout">
+                    <a href="../index.html">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+</header>
+
+<br>
+<br>
+
+<main>
         <div class="upload-file">
             <h2>Upload File</h2>
             <?php if ($passed > 0): ?>
-                <p>You have already submitted this activity.</p>
+                <p class="submitted-message">You have already submitted this activity.</p>
                 <?php if (!empty($activity['remarks'])): ?>
-                    <p>Remarks: <?php echo htmlspecialchars($activity['remarks']); ?></p>
+                    <p class="remarks">Remarks: <?php echo htmlspecialchars($activity['remarks']); ?></p>
                 <?php else: ?>
-                    <p>Remarks: Still not graded</p>
+                    <p class="remarks">Remarks: Still not graded</p>
                 <?php endif; ?>
             <?php else: ?>
                 <form action="../php/upload_file.php" method="post" enctype="multipart/form-data">
@@ -59,10 +84,22 @@ $passed_stmt->close();
                     <input type="hidden" name="timepass" value="<?php echo htmlspecialchars($timepass); ?>">
                     <label for="student_file">Upload your file:</label>
                     <input type="file" id="student_file" name="student_file" required>
-                    <button type="submit">Upload File</button>
+                    <button type="submit" class="upload-btn">Upload File</button>
                 </form>
             <?php endif; ?>
         </div>
     </main>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>
