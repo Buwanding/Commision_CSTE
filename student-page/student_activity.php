@@ -3,7 +3,7 @@ session_start();
 require '../php/db.php';
 
 $activity_id = $_REQUEST['activity_id'];
-
+//getting the data from previous page
 // Fetch activity details based on activity_id
 $activity_query = "SELECT student_email, remarks FROM activity_details WHERE id = ?";
 $activity_stmt = $conn->prepare($activity_query);
