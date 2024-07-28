@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="background">
 
-      <div class="login-container">
-        <h1>SAMS</h1>
-        <p>Your Partner in Student Success</p>
-        <form id="loginForm" action="./php/login.php" method="POST">
-          <div class="input-group">
-            <br>
-            <label for="username">Username</label>
-            <input
-              type="email"
-              id="username"
-              name="username"
-              placeholder="Enter a Username"
-              required
-            />
-          </div>
-
-          <div class="input-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter a Password"
-              required
-            />
-          </div>
-
-          <a href="#" class="forgot-password">Forgot your password?</a>
+        <div class="form-container">
 
           <br>
-          <br>
 
-          <button type="submit" class="login-btn">LOGIN</button>
+            <img src="./images/LOGO.png" alt="LOGO" width="100" height="100">
+            
+            <h1>SAMS</h1>
 
-        </form>
+            <p>Your Partner in Student Success</p>
 
-        <br>
-        
-        <p class="register-text">
-          Don't have an account? <a href="register.html">Register Now</a>
-        </p>
+            <form id="loginForm" action="./php/login.php" method="POST">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input
+                        type="email"
+                        id="username"
+                        name="username"
+                        placeholder="Enter a Username"
+                        required
+                    />
+                </div>
 
-      </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter a Password"
+                        required
+                    />
+                </div>
+
+                <a href="#" class="forgot-password">Forgot your password?</a>
+
+                <br>
+
+                <button type="submit" class="login-btn">LOGIN</button>
+
+            </form>
+
+            <p class="register-text">
+                Don't have an account? <a href="register.html">Register Now</a>
+            </p>
+
+        </div>
 
     </div>
 
-  </body>
-  
+</body>
 </html>

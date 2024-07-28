@@ -81,10 +81,10 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
     </main>
 
     <footer>
-    <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
-    </div>
-    </footer>   
+        <div class="footer-container">
+            <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+        </div>
+    </footer>
 
 
 </body>

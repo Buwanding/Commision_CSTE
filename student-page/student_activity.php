@@ -90,16 +90,13 @@ $passed_stmt->close();
         </div>
     </main>
 
-    <br>
-    <br>
-    <br>
-    <br>
+    
 
     <footer>
-    <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
-    </div>
-</footer>
+        <div class="footer-container">
+            <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

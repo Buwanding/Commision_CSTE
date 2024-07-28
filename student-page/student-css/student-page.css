@@ -131,15 +131,15 @@ input[type="file"] {
 }
 
 footer {
-    background-color: #171717;
+    background-color: #000;
     color: white;
     text-align: center;
-    padding: 1px;
-    width: auto;
-    bottom: 0;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
 }
 
 .footer-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
 }
