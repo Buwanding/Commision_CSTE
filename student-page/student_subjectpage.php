@@ -11,35 +11,22 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($_REQUEST["subject"]); ?></title>
     <link rel="stylesheet" href="./student-css/student-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
 <header>
-        <div class="header-container">
-
-            <!-- <div class="logo">
-                <img>
-            </div> -->
-
-            <div class="system-name">
-                <h1>Student Activity Management System</h1>
-            </div>
-            <div class="icons">
-                <div class="notification-icon">
-                    <a href
-                    	<i style="font-size:24px" class="fa">&#xf0f3;</i>
-                    </a>
-                </div>
-                <div class="profile-icon">
-                    <a href="#">
-						<i style="font-size:24px" class="fa">&#xf007;</i>
-                    </a>
-                </div>
-                <div class="logout">
-                    <a href="../index.html">LOGOUT</a>
-                </div>
-            </div>
-        </div>
+    <div class="header-container">
+                <a href="dashboard.php"> <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> </a>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fa fa-bell"></i> </a></li>
+                <li><a href="../profiles.html"> <i class="fa fa-user"> </i> </a></li>
+                <li><a href="../index.html""> <i class="fa fa-sign-out"> </i> </a> </li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <br>

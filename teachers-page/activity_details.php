@@ -67,55 +67,40 @@ $activity_stmt->close();
 
             <h2>Student Email:</h2>
             <p><?php echo htmlspecialchars($activity['student_email'] ?? ''); ?></p>
-
             <br>
-
             <h2>Description:</h2>
             <p><?php echo htmlspecialchars($activity['description'] ?? ''); ?></p>
-
             <br>
-
             <h2>Deadline:</h2>
             <p><?php echo htmlspecialchars($activity['deadline'] ?? ''); ?></p>
-
             <br>
-
             <h2>Time Submitted:</h2>
             <p><?php echo htmlspecialchars($activity['timepass'] ?? ''); ?></p>
-
             <br>
-
             <h2>Remarks:</h2>
-
             <br>
-
             <form action="" method="post">
                 <input type="hidden" name="activity_id" value="<?php echo htmlspecialchars($activity_id); ?>">
                 <textarea id="remarks" name="remarks" required><?php echo htmlspecialchars($activity['remarks'] ?? ''); ?></textarea>
                 <button type="submit">Update Remarks</button>
             </form>
-
             <br>
-
             <h2>Student File:</h2>
             <?php if (!empty($activity['student_file'])): ?>
                 <p><a href="../php/download.php?file_id=<?php echo $activity_id; ?>">Download File</a></p>
             <?php else: ?>
                 <p>No file submitted.</p>
             <?php endif; ?>
-            
+
             <br>
-
-
         </div>
-
     </main>
 
     <footer>
-    <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
-    </div>
-</footer>
+        <div class="footer-container">
+            <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

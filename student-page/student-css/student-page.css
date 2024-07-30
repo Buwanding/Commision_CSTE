@@ -5,46 +5,55 @@ body {
     background-color: #afe5fd;
 }
 
-.header-container {
+header {
     background-color: #08b1ff;
-    color: rgb(255, 255, 255);
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.system-name h1 {
-    margin: 0;
-}
-
-.icons {
-    display: flex;
-    align-items: center;
-}
-
-.icons > div {
-    margin-left: 15px;
-}
-
-.icons img {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
-
-.logout a {
     color: white;
-    margin-left: 15px;
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid white;
-    border-radius: 4px;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-.logout a:hover {
-    background-color: white;
-    color: #333;
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.logo {
+    color: white;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 20px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+    background: #1b9bff;
+    transition: 0.5s;
 }
 
 main {
