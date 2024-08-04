@@ -7,6 +7,7 @@ if ($conn === false) {
 $database = "CSTE";
 $query = "CREATE DATABASE IF NOT EXISTS $database";
 if (mysqli_query($conn, $query)) {
+    
     // alert ("Database created successfully or already exists.<br>");
 } else {
     alert ("Error creating database: " . mysqli_error($conn) . "<br>");
