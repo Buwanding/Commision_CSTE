@@ -27,11 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             exit();
         } else {
-            alert ("Wrong Credentials");
+            echo '<script>alert ("Wrong Credentials");</script>';
+            
              header("Location: index.html");
         }
     } else {
-         alert ("Wrong Credentials");
+        echo '<script>alert ("Wrong Credentials");</script>';
          header("Location: index.html");
     }
 
