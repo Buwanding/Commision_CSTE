@@ -156,6 +156,15 @@ if (empty($subject_id) || empty($subject_name)) {
         ?>
     </ul>
 </div>
+    <form action="../php/sendmessage.php" method="POST">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phonenum" name="phonenum" >
+        <br><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <br><br>
+        <input type="submit" value="Send Message">
+    </form>   
 
 
     </div>
