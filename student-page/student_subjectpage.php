@@ -1,4 +1,9 @@
-<?php $subject_id = $_REQUEST["subject_id"]; ?>
+<?php 
+$subject_id = $_REQUEST["subject_id"]; 
+$subject_name = isset($_REQUEST["subject"]) ? htmlspecialchars($_REQUEST["subject"]) : '';
+$subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["subject_des"]) : '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,20 +11,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($_REQUEST["subject"]); ?></title>
     <link rel="stylesheet" href="./student-css/student-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-    <header>
-        <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1>
+
+<header>
+    <div class="header-container">
+                <a href="dashboard.php"> <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> </a>
         <nav>
-            <a href="dashboard.php">Back to Dashboard</a>
-            <a href="../index.html">Logout</a>
+            <ul>
+                <li><a href="#"><i class="fa fa-bell"></i> </a></li>
+                <li><a href="../profiles.html"> <i class="fa fa-user"> </i> </a></li>
+                <li><a href="../index.html""> <i class="fa fa-sign-out"> </i> </a> </li>
+            </ul>
         </nav>
-    </header>
+    </div>
+</header>
+
+<br>
+
     <main>
+
         <div class="subject-details">
           
-            <!-- Display activities and students -->
-            <h2>Activities</h2>
+            <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
+            <center> <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2> </center> 
+
+            <br>
+
+            <hr>
+
+            <br>
+
+            <h2> Activities: </h2> 
+
             <ul>
                 <?php
                 // Fetch activities for the subject
@@ -38,6 +64,15 @@
                 ?>
             </ul>
         </div>
+        
     </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+        </div>
+    </footer>
+
+
 </body>
 </html>
