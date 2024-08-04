@@ -13,6 +13,7 @@ $phonenum = $_POST["phonenum"];
 $apiURL = "8gprrd.api.infobip.com";
 $apiKey = "2db44b4c40f78de1ca10449c921a1e48-2d77bd07-7047-4cbe-9ac0-54520fec118e";
 
+
 $configuration = new Configuration(host: $apiURL, apiKey: $apiKey);
 $api = new SmsApi(config: $configuration);
 $destination = new SmsDestination(to: $phonenum);
