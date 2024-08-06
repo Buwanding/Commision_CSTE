@@ -8,6 +8,39 @@ if (empty($subject_id) || empty($subject_name)) {
     echo "Subject not found!";
     exit();
 }
+
+
+require '../php/db.php'; // Ensure database connection is included
+$stud_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
+$stud_stmt = $conn->prepare($stud_query);
+$stud_stmt->bind_param("i", $subject_id);
+$stud_stmt->execute();
+$stud_result = $stud_stmt->get_result();
+
+$students = [];
+while ($stud = $stud_result->fetch_assoc()) {
+    $parent_query = "SELECT parents.parents_name, parents.contact_number 
+                     FROM parents 
+                     INNER JOIN users ON parents.student_id = users.id 
+                     WHERE users.email = ?";
+    $parent_stmt = $conn->prepare($parent_query);
+    $parent_stmt->bind_param("s", $stud['student_email']); // Assuming email is a string
+    $parent_stmt->execute();
+    $parent_result = $parent_stmt->get_result();
+    
+    $parents = [];
+    while ($parent = $parent_result->fetch_assoc()) {
+        $parents[] = $parent;
+    }
+    $students[] = [
+        'student' => $stud,
+        'parents' => $parents
+    ];
+    $parent_stmt->close();
+}
+
+$stud_stmt->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +61,7 @@ if (empty($subject_id) || empty($subject_name)) {
             <ul>
                 <li><a href="#"><i class="fa fa-bell"></i> </a></li>
                 <li><a href="../profiles.html"> <i class="fa fa-user"> </i> </a></li>
-                <li><a href="../index.html""> <i class="fa fa-sign-out"> </i> </a> </li>
+                <li><a href="../index.html"> <i class="fa fa-sign-out"> </i> </a> </li>
             </ul>
         </nav>
     </div>
@@ -51,17 +84,52 @@ if (empty($subject_id) || empty($subject_name)) {
         <div class="form-container">
             <h2>Add Activity</h2>
             <br>
-            <form action="../php/add_activity.php" method="post">
-                <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
-                <label for="activity_name">Activity Name:</label>
-                <input type="text" id="activity_name" name="activity_name" required>
-                <label for="description">Description:</label>
-                <textarea id="description" name="description"></textarea>
-                <label for="deadline">Deadline:</label>
-                <input type="date" id="deadline" name="deadline" required>
-                <br>
-                <button type="submit">Add Activity</button>
-            </form>
+         <form id="activityForm" action="../php/add_activity.php" method="post">
+    <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
+    <label for="activity_name">Activity Name:</label>
+    <input type="text" id="activity_name" name="activity_name" required>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea>
+    <label for="deadline">Deadline:</label>
+    <input type="date" id="deadline" name="deadline" required>
+    <br>
+    <button type="submit">Add Activity</button>
+</form>
+
+<script>
+    document.getElementById('activityForm').addEventListener('submit', function(event) {
+        // Prevent the form from submitting immediately
+        event.preventDefault();
+
+        // Array of parent names and numbers
+        let parents = [
+            <?php foreach ($students as $student_data): ?>
+                <?php foreach ($student_data['parents'] as $parent): ?>
+                    { name: "<?= htmlspecialchars($parent['parents_name']) ?>", number: "<?= htmlspecialchars($parent['contact_number']) ?>" },
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        ];
+
+        // Append hidden input fields to the form
+        parents.forEach(function(parent, index) {
+            let nameInput = document.createElement('input');
+            nameInput.type = 'hidden';
+            nameInput.name = `parents[${index}][name]`;
+            nameInput.value = parent.name;
+            document.getElementById('activityForm').appendChild(nameInput);
+
+            let numberInput = document.createElement('input');
+            numberInput.type = 'hidden';
+            numberInput.name = `parents[${index}][number]`;
+            numberInput.value = parent.number;
+            document.getElementById('activityForm').appendChild(numberInput);
+        });
+
+        // Submit the form after adding hidden inputs
+        document.getElementById('activityForm').submit();
+    });
+</script>
+
         </div>
 
         <br>
@@ -90,7 +158,7 @@ if (empty($subject_id) || empty($subject_name)) {
             <ul>
                 <?php
                 // Fetch activities for the subject
-                require '../php/db.php'; // Ensure database connection is included
+                
                 $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
                 $activity_stmt = $conn->prepare($activity_query);
                 $activity_stmt->bind_param("i", $subject_id);
@@ -128,32 +196,17 @@ if (empty($subject_id) || empty($subject_name)) {
        <div class="list-container">
     <h2>List Parents</h2>
     <ul>
-        <?php
-        $stud_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
-        $stud_stmt = $conn->prepare($stud_query);
-        $stud_stmt->bind_param("i", $subject_id);
-        $stud_stmt->execute();
-        $stud_result = $stud_stmt->get_result();
+       <?php foreach ($students as $student_data): ?>
+    <div class="student-card">
+        <?php foreach ($student_data['parents'] as $parent): ?>
+            <ul>
+                <li><?= htmlspecialchars($parent['parents_name']) ?></li>
+                <li><?= htmlspecialchars($parent['contact_number']) ?></li>
+            </ul>
+        <?php endforeach; ?>
+    </div>
+<?php endforeach; ?>
 
-        while ($stud = $stud_result->fetch_assoc()) {
-            $parent_query = "SELECT parents.parents_name, parents.contact_number 
-                             FROM parents 
-                             INNER JOIN users ON parents.student_id = users.id 
-                             WHERE users.email = ?";
-            $parent_stmt = $conn->prepare($parent_query);
-            $parent_stmt->bind_param("s", $stud['student_email']); // Assuming email is a string
-            $parent_stmt->execute();
-            $parent_result = $parent_stmt->get_result();
-            
-            while ($parent = $parent_result->fetch_assoc()) {
-                echo "<li>" . htmlspecialchars($parent['parents_name']) . "</li>";
-                echo "<li>" . htmlspecialchars($parent['contact_number']) . "</li>";
-            }
-            $parent_stmt->close();
-        }
-
-        $stud_stmt->close();
-        ?>
     </ul>
 </div>
     <form action="../php/sendmessage.php" method="POST">

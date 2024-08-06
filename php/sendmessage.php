@@ -28,6 +28,6 @@ $response = $api->sendSmsMessage($request);
 
 echo '<script>alert ("Successfully sent the message");</script>';
 
-
+header("Location: ../teachers-page/dashboard.php");
 ?>
 
