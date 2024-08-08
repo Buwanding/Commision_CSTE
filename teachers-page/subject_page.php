@@ -2,6 +2,7 @@
 $subject_id = isset($_REQUEST["subject_id"]) ? $_REQUEST["subject_id"] : '';
 $subject_name = isset($_REQUEST["subject"]) ? htmlspecialchars($_REQUEST["subject"]) : '';
 $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["subject_des"]) : '';
+
 // Ensure subject_id and subject are set and valid
 if (empty($subject_id) || empty($subject_name)) {
     // Handle the error or redirect to a different page
@@ -9,8 +10,9 @@ if (empty($subject_id) || empty($subject_name)) {
     exit();
 }
 
-
 require '../php/db.php'; // Ensure database connection is included
+
+// Fetch students and their parents
 $stud_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
 $stud_stmt = $conn->prepare($stud_query);
 $stud_stmt->bind_param("i", $subject_id);
@@ -40,7 +42,6 @@ while ($stud = $stud_result->fetch_assoc()) {
 }
 
 $stud_stmt->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +49,7 @@ $stud_stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($_REQUEST["subject"]); ?></title>
+    <title><?php echo htmlspecialchars($subject_name); ?></title>
     <link rel="stylesheet" href="./teacher-styles/subject-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -56,84 +57,43 @@ $stud_stmt->close();
 
 <header>
     <div class="header-container">
-                <a href="dashboard.php"> <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> </a>
+        <a href="dashboard.php"><label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label></a>
         <nav>
             <ul>
-                <li><a href="#"><i class="fa fa-bell"></i> </a></li>
-                <li><a href="../profiles.html"> <i class="fa fa-user"> </i> </a></li>
-                <li><a href="../index.html"> <i class="fa fa-sign-out"> </i> </a> </li>
+                <li><a href="#"><i class="fa fa-bell"></i></a></li>
+                <li><a href="../profiles.html"><i class="fa fa-user"></i></a></li>
+                <li><a href="../index.html"><i class="fa fa-sign-out"></i></a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<br>
-<br>
+<br><br>
 
 <main>
-
-
     <div class="subject-details"> 
-        <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
-        <center> <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2> </center> 
+        <center><h1><?php echo htmlspecialchars($subject_name); ?></h1></center> 
+        <center><h2><?php echo htmlspecialchars($subject_des); ?></h2></center> 
 
-        <br>
-        <br>
+        <br><br>
 
         <!-- Form to add activities -->
         <div class="form-container">
             <h2>Add Activity</h2>
             <br>
-         <form id="activityForm" action="../php/add_activity.php" method="post">
-    <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
-    <label for="activity_name">Activity Name:</label>
-    <input type="text" id="activity_name" name="activity_name" required>
-    <label for="description">Description:</label>
-    <textarea id="description" name="description"></textarea>
-    <label for="deadline">Deadline:</label>
-    <input type="date" id="deadline" name="deadline" required>
-    <br>
-    <button type="submit">Add Activity</button>
-</form>
-
-<script>
-    document.getElementById('activityForm').addEventListener('submit', function(event) {
-        // Prevent the form from submitting immediately
-        event.preventDefault();
-
-        // Array of parent names and numbers
-        let parents = [
-            <?php foreach ($students as $student_data): ?>
-                <?php foreach ($student_data['parents'] as $parent): ?>
-                    { name: "<?= htmlspecialchars($parent['parents_name']) ?>", number: "<?= htmlspecialchars($parent['contact_number']) ?>" },
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-        ];
-
-        // Append hidden input fields to the form
-        parents.forEach(function(parent, index) {
-            let nameInput = document.createElement('input');
-            nameInput.type = 'hidden';
-            nameInput.name = `parents[${index}][name]`;
-            nameInput.value = parent.name;
-            document.getElementById('activityForm').appendChild(nameInput);
-
-            let numberInput = document.createElement('input');
-            numberInput.type = 'hidden';
-            numberInput.name = `parents[${index}][number]`;
-            numberInput.value = parent.number;
-            document.getElementById('activityForm').appendChild(numberInput);
-        });
-
-        // Submit the form after adding hidden inputs
-        document.getElementById('activityForm').submit();
-    });
-</script>
-
+        <form action="../php/add_activity.php" method="post">
+                <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
+                <label for="activity_name">Activity Name:</label>
+                <input type="text" id="activity_name" name="activity_name" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+                <label for="deadline">Deadline:</label>
+                <input type="date" id="deadline" name="deadline" required>
+                <button type="submit">Add Activity</button>
+            </form>
         </div>
 
-        <br>
-        <br>
+        <br><br>
 
         <!-- Form to assign students -->
         <div class="form-container">
@@ -143,14 +103,11 @@ $stud_stmt->close();
                 <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
                 <label for="student_name">Student Name:</label>
                 <input type="text" id="student_name" name="student_name" required>
-                <br>
                 <button type="submit">Assign Student</button>
             </form>
         </div>
 
-        <br>
-        <br>
-        <br>
+        <br><br><br>
 
         <!-- Display activities and students -->
         <div class="list-container">
@@ -158,7 +115,6 @@ $stud_stmt->close();
             <ul>
                 <?php
                 // Fetch activities for the subject
-                
                 $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
                 $activity_stmt = $conn->prepare($activity_query);
                 $activity_stmt->bind_param("i", $subject_id);
@@ -193,38 +149,24 @@ $stud_stmt->close();
                 ?>
             </ul>
         </div>
-       <div class="list-container">
-    <h2>List Parents</h2>
-    <ul>
-       <?php foreach ($students as $student_data): ?>
-    <div class="student-card">
-        <?php foreach ($student_data['parents'] as $parent): ?>
-            <ul>
-                <li><?= htmlspecialchars($parent['parents_name']) ?></li>
-                <li><?= htmlspecialchars($parent['contact_number']) ?></li>
-            </ul>
-        <?php endforeach; ?>
-    </div>
-<?php endforeach; ?>
 
-    </ul>
-</div>
-    <form action="../php/sendmessage.php" method="POST">
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phonenum" name="phonenum" >
-        <br><br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        <br><br>
-        <input type="submit" value="Send Message">
-    </form>   
-
-
+        <div class="list-container">
+            <h2>List Parents</h2>
+            <?php foreach ($students as $student_data): ?>
+                <div class="student-card">
+                    <?php foreach ($student_data['parents'] as $parent): ?>
+                        <ul>
+                            <li><?= htmlspecialchars($parent['parents_name']) ?></li>
+                            <li><?= htmlspecialchars($parent['contact_number']) ?></li>
+                        </ul>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 </main>
 
-<br>
-<br>
+<br><br>
 
 <footer>
     <div class="footer-container">

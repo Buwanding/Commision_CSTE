@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $activity_name = $_POST['activity_name'];
     $description = $_POST['description'];
     $deadline = $_POST["deadline"];
-     $parents = isset($_POST['parents']) ? $_POST['parents'] : [];
 
     $sql = "INSERT INTO activities (subject_id, activity_name, description, deadline) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
@@ -26,8 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->close();
+    $_SESSION['subject_id'] = $subject_id;
+    $_SESSION['activity_name'] = $activity_name;
+    $_SESSION['deadline'] = $deadline;
+
     // $conn->close();
-    header("Location: ../php/sendmessage.php?parents=" . urlencode(json_encode($parents)) . "&activity_name=" . urlencode($activity_name));
+    require "sendmessage.php";
     exit();
 }
 ?>
