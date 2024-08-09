@@ -27,13 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             exit();
         } else {
-            echo '<script>alert ("Wrong Credentials");</script>';
-            
-             header("Location: index.html");
+            echo '<script>
+                    alert("Wrong Credentials");
+                    window.location.href = "../index.html";
+                  </script>';
+            exit();
         }
     } else {
-        echo '<script>alert ("Wrong Credentials");</script>';
-         header("Location: index.html");
+        echo '<script>
+                alert("Wrong Credentials");
+                window.location.href = "../index.html";
+              </script>';
+        exit();
     }
 
     $stmt->close();
