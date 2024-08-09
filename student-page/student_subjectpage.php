@@ -18,12 +18,13 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
 
 <header>
     <div class="header-container">
-                <a href="dashboard.php"> <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> </a>
+        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
         <nav>
             <ul>
                 <li><a href="#"><i class="fa fa-bell"></i> </a></li>
-                <li><a href="../profiles.html"> <i class="fa fa-user"> </i> </a></li>
-                <li><a href="../index.html""> <i class="fa fa-sign-out"> </i> </a> </li>
+                <li><a href="dashboard.php">  HOME </i> </a></li>
+                <li><a href="#"> PROFILE </i> </a></li>
+                <li><a href="../index.html" class="logout">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -36,7 +37,7 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         <div class="subject-details">
           
             <center> <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1> </center> 
-            <center> <h2><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h2> </center> 
+            <center> <h4><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?> </h4> </center> 
 
             <br>
 
@@ -66,6 +67,11 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         </div>
         
     </main>
+
+    <br>
+    <br>
+    <br>
+    
 
     <footer>
         <div class="footer-container">
