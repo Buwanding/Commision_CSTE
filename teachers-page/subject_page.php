@@ -133,8 +133,10 @@ $stud_stmt->close();
                             "</a>: " . htmlspecialchars($activity['description']) .
                         "</span>" .
 
-                        "<form action='update_remarks.php' method='post' class='update-form'>" .
-                            "<input type='hidden' name='activity_id' value='" . htmlspecialchars($activity['id']) . "'>" . 
+                        "<form action='../php/update.php' method='post'>" .
+                            "<input type='hidden' name='subject_id' value='" . htmlspecialchars( $subject_id) . "'>" . 
+                            "<input type='hidden' name='activity_name' value='" . htmlspecialchars($activity['activity_name']) . "'>" .
+                             "<input type='hidden' name='deadline' value='" . htmlspecialchars($activity['deadline']) . "'>" .
                             "<button type='submit' class='update-button'>Update</button>" .
                         "</form>" .
 
