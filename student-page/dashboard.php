@@ -41,7 +41,6 @@ $conn->close();
         <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
         <nav>
             <ul>
-                <li><a href="#"><i class="fa fa-bell"></i> </a></li>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
                 <li><a href="#"> PROFILE </i> </a></li>
                 <li><a href="../index.html" class="logout">Logout</a></li>
@@ -57,7 +56,7 @@ $conn->close();
 <br>
 
     <main>
-        <h2>Subjects Handled</h2>
+        <h2>Subjects Enrolled</h2>
         <div class="subjects-container">
             <?php foreach ($subjects as $subject): ?>
                 <div class="subject-card" style="background-color: <?= htmlspecialchars($subject['subject_color']) ?>;">

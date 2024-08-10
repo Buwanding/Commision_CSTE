@@ -21,7 +21,6 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
         <nav>
             <ul>
-                <li><a href="#"><i class="fa fa-bell"></i> </a></li>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
                 <li><a href="#"> PROFILE </i> </a></li>
                 <li><a href="../index.html" class="logout">Logout</a></li>

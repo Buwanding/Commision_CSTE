@@ -68,7 +68,6 @@ $stud_stmt->close();
     </div>
 </header>
 
-<br><br>
 
 <main>
     <div class="subject-details"> 
@@ -78,12 +77,12 @@ $stud_stmt->close();
         <br>
         
         <hr width="1000px">
-
+        
         <br>
 
         <!-- Form to add activities -->
         <div class="form-container">
-            <h2>Add Activity</h2>
+        <h2>Add Activity</h2>
             <br>
         <form action="../php/add_activity.php" method="post">
                 <input type="hidden" name="subject_id" value="<?= htmlspecialchars($subject_id) ?>">
@@ -115,24 +114,40 @@ $stud_stmt->close();
 
         <!-- Display activities and students -->
         <div class="list-container">
-            <h2>Activities</h2>
-            <ul>
-                <?php
-                // Fetch activities for the subject
-                $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
-                $activity_stmt = $conn->prepare($activity_query);
-                $activity_stmt->bind_param("i", $subject_id);
-                $activity_stmt->execute();
-                $activity_result = $activity_stmt->get_result();
-                
-                while ($activity = $activity_result->fetch_assoc()) {
-                    echo "<li><a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id']) . "'>" . htmlspecialchars($activity['activity_name']) . "</a>: " . htmlspecialchars($activity['description']) . "</li>";
-                }
-                
-                $activity_stmt->close();
-                ?>
-            </ul>
-        </div>
+        <h2>Activities</h2>
+        <ul>
+            <?php
+            // Fetch activities for the subject
+            $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
+            $activity_stmt = $conn->prepare($activity_query);
+            $activity_stmt->bind_param("i", $subject_id);
+            $activity_stmt->execute();
+            $activity_result = $activity_stmt->get_result();
+            
+            while ($activity = $activity_result->fetch_assoc()) {
+                echo "<li class='activity-item'>" .
+
+                        "<span class='activity-info'>" .
+                            "<a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id']) . "'>" . 
+                            htmlspecialchars($activity['activity_name']) . 
+                            "</a>: " . htmlspecialchars($activity['description']) .
+                        "</span>" .
+
+                        "<form action='update_remarks.php' method='post' class='update-form'>" .
+                            "<input type='hidden' name='activity_id' value='" . htmlspecialchars($activity['id']) . "'>" . 
+                            "<button type='submit' class='update-button'>Update</button>" .
+                        "</form>" .
+
+                    "</li>";
+            }
+            
+            $activity_stmt->close();
+            ?>
+        </ul>
+</div>
+
+
+        <br><br>
 
         <div class="list-container">
             <h2>Assigned Students</h2>
@@ -154,6 +169,8 @@ $stud_stmt->close();
             </ul>
         </div>
 
+        <br><br>
+
         <div class="list-container">
             <h2>List Parents</h2>
             <?php foreach ($students as $student_data): ?>
@@ -169,8 +186,6 @@ $stud_stmt->close();
         </div>
     </div>
 </main>
-
-<br><br>
 
 <footer>
     <div class="footer-container">
