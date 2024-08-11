@@ -1,23 +1,35 @@
 <?php
 // Ensure database connection is included
-require 'db.php';
+require '../php/db.php';
 
-$file_id = $_REQUEST['file_id'];
+// Check if file_path is set
+if (isset($_GET['file_path'])) {
+    $file_path = $_GET['file_path'];
 
-// Fetch file details based on file_id
-$file_query = "SELECT student_file FROM activity_details WHERE id = ?";
-$file_stmt = $conn->prepare($file_query);
-$file_stmt->bind_param("i", $file_id);
-$file_stmt->execute();
-$file_result = $file_stmt->get_result();
-$file = $file_result->fetch_assoc();
-$file_stmt->close();
+    // Sanitize the file path to avoid security issues
+    $file_path = basename($file_path);
 
-if ($file) {
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="student_file_' . $file_id . '"');
-    echo $file['student_file'];
+    // Define the full path to the file
+    $full_path = './uploads/' . $file_path;
+
+    // Check if the file exists
+    if (file_exists($full_path)) {
+        // Set headers to force download
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . $file_path . '"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($full_path));
+
+        // Read the file and output it
+        readfile($full_path);
+        exit;
+    } else {
+        echo 'File not found.';
+    }
 } else {
-    echo "File not found.";
+    echo 'Invalid request.';
 }
 ?>

@@ -90,7 +90,7 @@ $query = "CREATE TABLE IF NOT EXISTS activity_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
     activity_id INT NOT NULL,
     student_email VARCHAR(255) NOT NULL,
-    student_file BLOB,
+    student_file_path VARCHAR(255),
     remarks TEXT,
     timepass DATE NOT NULL,
     status VARCHAR(255),

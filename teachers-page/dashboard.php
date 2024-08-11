@@ -58,7 +58,7 @@ $conn->close();
         <nav>
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
-                <li><a href="#"> PROFILE </i> </a></li>
+                <li><a href="../php/profile.php"> PROFILE </i> </a></li>
                 <li><a href="../index.html" class="logout">Logout</a></li>
             </ul>
         </nav>

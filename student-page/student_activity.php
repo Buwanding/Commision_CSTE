@@ -34,11 +34,8 @@ $passed_stmt->close();
     <title>Upload File</title>
     <link rel="stylesheet" href="./student-css/student-page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
-
 <body>
-
 <header>
     <div class="header-container">
         <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
@@ -51,50 +48,34 @@ $passed_stmt->close();
         </nav>
     </div>
 </header>
-
-<br>
-<br>
-<br>
-<br>
-
+<br><br><br><br>
 <main>
-        <div class="upload-file">
-            <h2>Upload File</h2>
-            <?php if ($passed > 0): ?>
-                <p class="submitted-message">You have already submitted this activity.</p>
-                <?php if (!empty($activity['remarks'])): ?>
-                    <p class="remarks">Remarks: <?php echo htmlspecialchars($activity['remarks']); ?></p>
-                <?php else: ?>
-                    <p class="remarks">Remarks: Still not graded</p>
-                <?php endif; ?>
+    <div class="upload-file">
+        <h2>Upload File</h2>
+        <?php if ($passed > 0): ?>
+            <p class="submitted-message">You have already submitted this activity.</p>
+            <?php if (!empty($activity['remarks'])): ?>
+                <p class="remarks">Remarks: <?php echo htmlspecialchars($activity['remarks']); ?></p>
             <?php else: ?>
-                <form action="../php/upload_file.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="activity_id" value="<?php echo htmlspecialchars($activity_id); ?>">
-                    <input type="hidden" name="student_email" value="<?php echo htmlspecialchars($student_email); ?>">
-                    <input type="hidden" name="timepass" value="<?php echo htmlspecialchars($timepass); ?>">
-                    <label for="student_file">Upload your file:</label>
-                    <input type="file" id="student_file" name="student_file" required>
-                    <button type="submit" class="upload-btn">Upload File</button>
-                </form>
+                <p class="remarks">Remarks: Still not graded</p>
             <?php endif; ?>
-        </div>
-    </main>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    
-
-    <footer>
-        <div class="footer-container">
-            <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
-        </div>
-    </footer>
-
+        <?php else: ?>
+            <form action="../php/upload_file.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="activity_id" value="<?php echo htmlspecialchars($activity_id); ?>">
+                <input type="hidden" name="student_email" value="<?php echo htmlspecialchars($student_email); ?>">
+                <input type="hidden" name="timepass" value="<?php echo htmlspecialchars($timepass); ?>">
+                <label for="student_file">Upload your file:</label>
+                <input type="file" id="student_file" name="student_file" required>
+                <button type="submit" class="upload-btn">Upload File</button>
+            </form>
+        <?php endif; ?>
+    </div>
+</main>
+<br><br><br><br><br><br><br><br>
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
