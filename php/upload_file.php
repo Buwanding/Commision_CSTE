@@ -1,10 +1,13 @@
 <?php
+session_start(); // Start the session at the beginning
 require 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $activity_id = $_POST['activity_id'];
     $student_email = $_POST['student_email'];
     $timepass = $_POST['timepass'];
+    $activity_name = $_POST['activity_name'];
+    $subject_name  = $_POST['subject_name'];
 
     // Check if the student already passed the activity
     $passed_query = "SELECT COUNT(*) AS count FROM activity_details WHERE activity_id = ? AND student_email = ?";
@@ -46,8 +49,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $insert_stmt->bind_param("issss", $activity_id, $student_email, $target_file, $timepass, $status);
 
             if ($insert_stmt->execute()) {
-                // Redirect or inform the user of the successful upload
-                header("Location: success_page.php");
+                // Set session variables
+                $_SESSION['activity_id'] = $activity_id;
+                $_SESSION['student_email'] = $student_email;
+                $_SESSION['timepass'] = $timepass;
+                $_SESSION['activity_name'] = $activity_name;
+                $_SESSION['subject_name'] = $subject_name;
+
+                // Redirect to upload_text.php
+                header("Location: upload_text.php");
                 exit;
             } else {
                 echo "Database Error: " . $insert_stmt->error;
@@ -62,6 +72,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "Invalid request method.";
 }
-header("Location: ../student-page/dashboard.php");
 exit();
 ?>

@@ -1,9 +1,16 @@
 <?php
+$activity_name = isset($_REQUEST['activity_name']) ? $_REQUEST['activity_name'] : 'Unknown Activity';
+$subject_name = isset($_REQUEST['subject_name']) ? $_REQUEST['subject_name'] : 'Unknown Subject';
 session_start();
 require '../php/db.php';
 
-$activity_id = $_REQUEST['activity_id'];
-//getting the data from previous page
+// Ensure activity_id is provided in the request
+if (isset($_REQUEST['activity_id'])) {
+    $activity_id = $_REQUEST['activity_id'];
+} else {
+    die("Activity ID is missing.");
+}
+
 // Fetch activity details based on activity_id
 $activity_query = "SELECT student_email, remarks FROM activity_details WHERE id = ?";
 $activity_stmt = $conn->prepare($activity_query);
@@ -24,6 +31,8 @@ $passed_stmt->execute();
 $passed_result = $passed_stmt->get_result();
 $passed = $passed_result->fetch_assoc()['count'];
 $passed_stmt->close();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +60,7 @@ $passed_stmt->close();
 <br><br><br><br>
 <main>
     <div class="upload-file">
-        <h2>Upload File</h2>
+        <h2><?php echo htmlspecialchars($activity_name); ?></h2>
         <?php if ($passed > 0): ?>
             <p class="submitted-message">You have already submitted this activity.</p>
             <?php if (!empty($activity['remarks'])): ?>
@@ -64,6 +73,8 @@ $passed_stmt->close();
                 <input type="hidden" name="activity_id" value="<?php echo htmlspecialchars($activity_id); ?>">
                 <input type="hidden" name="student_email" value="<?php echo htmlspecialchars($student_email); ?>">
                 <input type="hidden" name="timepass" value="<?php echo htmlspecialchars($timepass); ?>">
+                <input type="hidden" name="activity_name" value="<?php echo htmlspecialchars($activity_name); ?>">
+                <input type="hidden" name="subject_name" value="<?php echo htmlspecialchars($subject_name); ?>">
                 <label for="student_file">Upload your file:</label>
                 <input type="file" id="student_file" name="student_file" required>
                 <button type="submit" class="upload-btn">Upload File</button>
