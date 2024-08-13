@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db.php';
+require '../php/db.php';
 
 if (!isset($_SESSION['username'])) {
     header("Location: ../index.html");
