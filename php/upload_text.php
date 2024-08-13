@@ -34,11 +34,20 @@ $stud_stmt->bind_param("s", $student_email); // Note: Use 's' for string type
 $stud_stmt->execute();
 $stud_result = $stud_stmt->get_result();
 
+$phonenum = null; // Initialize to null to detect if it's set later
+
 while ($parent = $stud_result->fetch_assoc()) {
     $phonenum = $parent['contact_number'];
     $message = "Reminder Maam/Sir " . $parent['parents_name'] . 
                " your son/daughter has passed his/her " . $activity_name . 
                " in " . $subject_name . " on date " . $timepass;
+}
+
+$stud_stmt->close();
+
+if ($phonenum === null) {
+    echo "No phone number found for the student's parent.";
+    exit();
 }
 
 $apiURL = "8gprrd.api.infobip.com";
@@ -47,17 +56,21 @@ $apiKey = "2db44b4c40f78de1ca10449c921a1e48-2d77bd07-7047-4cbe-9ac0-54520fec118e
 $configuration = new Configuration(host: $apiURL, apiKey: $apiKey);
 $api = new SmsApi(config: $configuration);
 
-$destination = new SmsDestination(to: $phonenum);
-$themessage = new SmsTextualMessage(
-    destinations: [$destination],
-    text: $message,
-    from: "Syntax Flow"
-);
+try {
+    $destination = new SmsDestination(to: $phonenum);
+    $themessage = new SmsTextualMessage(
+        destinations: [$destination],
+        text: $message,
+        from: "Syntax Flow"
+    );
 
-$request = new SmsAdvancedTextualRequest(messages: [$themessage]);
-$response = $api->sendSmsMessage($request);
+    $request = new SmsAdvancedTextualRequest(messages: [$themessage]);
+    $response = $api->sendSmsMessage($request);
 
-echo '<script>alert("Successfully sent the message");</script>';
-header("Location: ../student-page/dashboard.php");
-exit();
+    echo '<script>alert("Successfully sent the message");</script>';
+    header("Location: ../student-page/dashboard.php");
+    exit();
+} catch (Exception $e) {
+    echo 'Message sending failed: ' . $e->getMessage();
+}
 ?>

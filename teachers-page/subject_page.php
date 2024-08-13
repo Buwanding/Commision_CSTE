@@ -61,7 +61,7 @@ $stud_stmt->close();
         <nav>
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
-                <li><a href="#"> PROFILE </i> </a></li>
+                <li><a href="teacher-profile.php"> PROFILE </i> </a></li>
                 <li><a href="../index.html" class="logout">Logout</a></li>
             </ul>
         </nav>
@@ -128,8 +128,8 @@ $stud_stmt->close();
                 echo "<li class='activity-item'>" .
 
                         "<span class='activity-info'>" .
-                            "<a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id']) . "'>" . 
-                            htmlspecialchars($activity['activity_name']) . 
+                            "<a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id'])  . "&subject_name=".
+                            htmlspecialchars($subject_name) . "&activity_name=". htmlspecialchars($activity['activity_name']) . "'>" . htmlspecialchars($activity['activity_name']).
                             "</a>: " . htmlspecialchars($activity['description']) .
                         "</span>" .
 

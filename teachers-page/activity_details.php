@@ -1,12 +1,14 @@
 <?php
 // Ensure database connection is included
+$activity_name = isset($_REQUEST['activity_name']) ? $_REQUEST['activity_name'] : 'Unknown Activity';
+$subject_name = isset($_REQUEST['subject_name']) ? $_REQUEST['subject_name'] : 'Unknown Subject';
 require '../php/db.php';
 
 // Fetch activity details
 $activity_id = $_GET['activity_id'] ?? null;
 
 if ($activity_id) {
-    $activity_query = "SELECT ad.student_email, ad.remarks, ad.timepass, ad.student_file_path, a.description, a.deadline 
+    $activity_query = "SELECT ad.id AS ad_id, ad.student_email, ad.remarks, ad.timepass, ad.student_file_path, a.description, a.deadline 
                        FROM activity_details ad 
                        JOIN activities a ON ad.activity_id = a.id 
                        WHERE ad.activity_id = ?";
@@ -36,7 +38,7 @@ if ($activity_id) {
             <nav>
                 <ul>
                     <li><a href="dashboard.php">HOME</a></li>
-                    <li><a href="#">PROFILE</a></li>
+                    <li><a href="teacher-profile.php">PROFILE</a></li>
                     <li><a href="../index.html" class="logout">Logout</a></li>
                 </ul>
             </nav>
@@ -44,6 +46,8 @@ if ($activity_id) {
     </header>
     <main>
         <div class="activity-details">
+            <h2><?php echo htmlspecialchars($activity_name); ?></h2>
+            <h2><?php echo htmlspecialchars($subject_name); ?></h2>
             <center><h1>ACTIVITY DETAILS</h1></center>
             <table>
                 <thead>
@@ -65,8 +69,11 @@ if ($activity_id) {
                             <td><?php echo htmlspecialchars($activity['timepass'] ?? 'N/A'); ?></td>
                             <td>
                                 <form action="../php/update_remarks.php" method="post">
-                                    <input type="hidden" name="activity_id" value="<?php echo htmlspecialchars($activity_id); ?>">
+                                    <input type="hidden" name="ad_id" value="<?php echo htmlspecialchars($activity['ad_id']); ?>">
+                                    <input type="hidden" name="student_email" value="<?php echo htmlspecialchars($activity['student_email']); ?>">
                                     <textarea id="remarks" name="remarks" required><?php echo htmlspecialchars($activity['remarks'] ?? ''); ?></textarea>
+                                    <input type="hidden" name="activity_name" value="<?php echo htmlspecialchars($activity_name); ?>">
+                                    <input type="hidden" name="subject_name" value="<?php echo htmlspecialchars($subject_name); ?>">
                                     <button type="submit">Update Remarks</button>
                                 </form>
                             </td>
