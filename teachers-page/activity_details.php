@@ -39,16 +39,19 @@ if ($activity_id) {
                 <ul>
                     <li><a href="dashboard.php">HOME</a></li>
                     <li><a href="teacher-profile.php">PROFILE</a></li>
-                    <li><a href="../index.html" class="logout">Logout</a></li>
+                    <li><a href="../index.html" class="logout">LOGOUT</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <br><br>
+
     <main>
         <div class="activity-details">
+        <center><h1>ACTIVITY DETAILS</h1></center>
             <h2><?php echo htmlspecialchars($activity_name); ?></h2>
-            <h2><?php echo htmlspecialchars($subject_name); ?></h2>
-            <center><h1>ACTIVITY DETAILS</h1></center>
+            <br><br><br><br>
             <table>
                 <thead>
                     <tr>
@@ -71,7 +74,7 @@ if ($activity_id) {
                                 <form action="../php/update_remarks.php" method="post">
                                     <input type="hidden" name="ad_id" value="<?php echo htmlspecialchars($activity['ad_id']); ?>">
                                     <input type="hidden" name="student_email" value="<?php echo htmlspecialchars($activity['student_email']); ?>">
-                                    <textarea id="remarks" name="remarks" required><?php echo htmlspecialchars($activity['remarks'] ?? ''); ?></textarea>
+                                    <input type="text" id="remarks" name="remarks" value="<?php echo htmlspecialchars($activity['remarks'] ?? ''); ?>" required>
                                     <input type="hidden" name="activity_name" value="<?php echo htmlspecialchars($activity_name); ?>">
                                     <input type="hidden" name="subject_name" value="<?php echo htmlspecialchars($subject_name); ?>">
                                     <button type="submit">Update Remarks</button>
@@ -79,17 +82,23 @@ if ($activity_id) {
                             </td>
                             <td>
                                 <?php if (!empty($activity['student_file_path'])): ?>
-                                    <a href="../php/download.php?file_path=<?php echo urlencode($activity['student_file_path']); ?>">Download File</a>
+                                    <a href="../php/download.php?file_path=<?php echo urlencode($activity['student_file_path']); ?>" class="download-btn">
+                                         Download File
+                                    </a>
                                 <?php else: ?>
                                     N/A
                                 <?php endif; ?>
                             </td>
+
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
         </div>
     </main>
+
+    <br><br><br><br><br><br><br>
+
     <footer>
         <div class="footer-container">
             <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
@@ -97,6 +106,8 @@ if ($activity_id) {
     </footer>
 </body>
 </html>
+
+
 <?php
 // Close the statement and connection
 $activity_stmt->close();

@@ -17,17 +17,17 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
 <body>
 
 <header>
-    <div class="header-container">
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
-        <nav>
-            <ul>
-                <li><a href="dashboard.php">  HOME </i> </a></li>
-                <li><a href="#"> PROFILE </i> </a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+        <div class="header-container">
+            <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.php">HOME</a></li>
+                    <li><a href="teacher-profile.php">PROFILE</a></li>
+                    <li><a href="../index.html" class="logout">LOGOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
 <br>
 

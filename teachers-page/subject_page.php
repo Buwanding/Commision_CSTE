@@ -62,7 +62,7 @@ $stud_stmt->close();
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
                 <li><a href="teacher-profile.php"> PROFILE </i> </a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
+                <li><a href="../index.html" class="logout">LOGOUT</a></li>
             </ul>
         </nav>
     </div>
@@ -76,7 +76,7 @@ $stud_stmt->close();
 
         <br>
         
-        <hr width="1000px">
+        <hr width="800px">
         
         <br>
 
@@ -128,15 +128,15 @@ $stud_stmt->close();
                 echo "<li class='activity-item'>" .
 
                         "<span class='activity-info'>" .
-                            "<a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id'])  . "&subject_name=".
+                            "<a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id'])  . "&subject_name=" .
                             htmlspecialchars($subject_name) . "&activity_name=". htmlspecialchars($activity['activity_name']) . "'>" . htmlspecialchars($activity['activity_name']).
                             "</a>: " . htmlspecialchars($activity['description']) .
                         "</span>" .
 
                         "<form action='../php/update.php' method='post'>" .
-                            "<input type='hidden' name='subject_id' value='" . htmlspecialchars( $subject_id) . "'>" . 
+                            "<input type='hidden' name='subject_id' value='" . htmlspecialchars($subject_id) . "'>" . 
                             "<input type='hidden' name='activity_name' value='" . htmlspecialchars($activity['activity_name']) . "'>" .
-                             "<input type='hidden' name='deadline' value='" . htmlspecialchars($activity['deadline']) . "'>" .
+                            "<input type='hidden' name='deadline' value='" . htmlspecialchars($activity['deadline']) . "'>" .
                             "<button type='submit' class='update-button'>Update</button>" .
                         "</form>" .
 

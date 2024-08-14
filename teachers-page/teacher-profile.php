@@ -62,9 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
         <nav>
             <ul>
-                <li><a href="dashboard.php">HOME</a></li>
-                <li><a href="#">PROFILE</a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
+                <li><a href="dashboard.php">  HOME </i> </a></li>
+                <li><a href="teacher-profile.php"> PROFILE </i> </a></li>
+                <li><a href="../index.html" class="logout">LOGOUT</a></li>
             </ul>
         </nav>
     </div>

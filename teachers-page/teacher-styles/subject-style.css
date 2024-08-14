@@ -1,204 +1,188 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0px;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
     background-color: #afe5fd;
 }
 
 header {
     background-color: #08b1ff;
     color: white;
-    padding: 0 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
+    align-items: center;
 }
 
-.logo {
-    color: white;
-    font-size: 35px;
-    line-height: 80px;
-    padding: 0 20px;
+header .logo {
+    font-size: 24px;
     font-weight: bold;
 }
 
 nav ul {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
     display: flex;
 }
 
 nav ul li {
-    margin: 0 10px;
+    margin-left: 20px;
 }
 
 nav ul li a {
     color: white;
-    font-size: 17px;
-    padding: 7px 13px;
-    border-radius: 3px;
-    text-transform: uppercase;
     text-decoration: none;
-    display: flex;
-    align-items: center;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
-nav ul li a.active,
-nav ul li a:hover {
-    background: #1b9bff;
-    transition: 0.5s;
+nav ul li a:hover, .logout a:hover {
+    background-color: #005f99;
 }
 
+/* Main Content Styles */
 main {
-    max-width: 1500px;
-    margin: 100px;
-    padding: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
     background-color: #ffffff;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.subject-details {
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.subject-details p {
-    font-size: 24px;
+.activity-details h2, .subject-details h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #005f99;
     font-weight: bold;
-    margin: 0 0 20px;
 }
 
-.form-container {
+.activity-details h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333333;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.form-container h2 {
-    margin-bottom: 10px;
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
-.form-container form {
-    display: flex;
-    flex-direction: column;
+table th {
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-.form-container label {
-    margin-bottom: 5px;
+table tr:hover {
+    background-color: #f1f1f1;
 }
 
-.form-container input[type="text"],
-.form-container textarea,
-.form-container input[type="date"] {
-    padding: 10px;
-    margin-bottom: 10px;
+/* Form Styles */
+form input[type="text"], form input[type="date"], form textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    box-sizing: border-box;
     font-size: 16px;
 }
 
-.form-container button {
-    padding: 10px;
-    background-color: #00aa52;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+form textarea {
+    height: 100px;
+    resize: vertical;
 }
 
-.form-container button:hover {
-    background-color: #00e770;
-}
-
-.delete-button {
-    padding: 10px 20px;
-    background-color: #ff4d4d;
+form button, .download-btn {
+    display: block; /* Change to block to make the button take full width available */
+    width: fit-content; /* This makes the button only as wide as its content */
+    padding: 10px 80px; /* Adjust the padding to your desired size */
+    background-color: #08b1ff;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
-    display: block;
-    width: 100%;
-    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px; /* This centers the button horizontally */
 }
 
-.delete-button:hover {
-    background-color: #ff3333;
+
+form button:hover, .download-btn:hover {
+    background-color: #007bb5;
+    transform: scale(1.05);
 }
 
-.list-container {
-    margin-bottom: 20px;
+form button:active, .download-btn:active {
+    background-color: #005f8b;
+    transform: scale(1);
 }
 
-.list-container h2 {
-    margin-bottom: 10px;
-}
-
-.list-container ul {
-    list-style: none;
-    padding: 0;
-}
-
-.list-container li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 5px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+.download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #08b1ff;
+    color: white;
+    text-decoration: none;
     border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
-.activity-info {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.update-form {
-    display: inline;
+.download-btn i {
+    margin-right: 8px;
 }
 
 .update-button {
-    background: linear-gradient(135deg, #00c6ff, #0072ff); /* Gradient background */
-    border: none;
+    padding: 10px 50px;
+    background-color: #08b1ff; /* Distinct color for the update button */
     color: white;
-    padding: 12px 25px; /* Slightly larger padding */
+    border: none;
+    border-radius: 5px;
     font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
     cursor: pointer;
-    border-radius: 10px; /* Fully rounded button */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 20px;
 }
 
 .update-button:hover {
-    background: linear-gradient(135deg, #0072ff, #00c6ff); /* Reverse gradient on hover */
-    transform: translateY(-2px) scale(1.05); /* Slightly lift and enlarge on hover */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
-}
-
-.update-button i {
-    margin-right: 8px; /* Space between icon and text */
+    background-color: #005f8b; /* Hover effect */
+    transform: scale(1.05);
 }
 
 .update-button:active {
-    transform: translateY(0); /* Reset transform on click */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Softer shadow on click */
+    background-color: #005f8b; /* Active state */
+    transform: scale(1);
 }
 
-  
+/* Optional: If you want to center the form containing the update button */
+.activity-item form {
+    display: flex;
+    justify-content: right;
+}
+
+/* Footer Styles */
 footer {
     background-color: #171717;
     color: white;
@@ -206,10 +190,10 @@ footer {
     padding: 10px 0;
     position: relative;
     width: 100%;
-    margin-top: 20px;
+    bottom: 0;
 }
 
 .footer-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }

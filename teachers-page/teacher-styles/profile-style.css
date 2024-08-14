@@ -7,40 +7,45 @@ body {
     padding: 0;
 }
 
+header {
+    background-color: #08b1ff;
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .header-container {
-    background-color: #4CAF50;
-    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
 }
 
-.logo {
+header .logo {
     font-size: 24px;
     font-weight: bold;
 }
 
 nav ul {
-    list-style-type: none;
-    margin: 0;
+    list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
-    gap: 15px;
 }
 
 nav ul li {
-    display: inline;
+    margin-left: 20px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
-nav ul li a:hover, nav ul li a.logout {
-    text-decoration: underline;
+nav ul li a:hover, .logout a:hover {
+    background-color: #005f99;
 }
 
 .profile-container {
@@ -87,16 +92,18 @@ nav ul li a:hover, nav ul li a.logout {
     background-color: #45a049;
 }
 
-.footer-container {
+/* Footer Styles */
+footer {
     background-color: #171717;
     color: white;
     text-align: center;
-    padding: 10px 20px;
-    position: fixed;
-    bottom: 0;
+    padding: 10px 0;
+    position: relative;
     width: 100%;
+    bottom: 0;
 }
 
-.footer-container p {
-    margin: 0;
+.footer-container {
+    max-width: 900px;
+    margin: 0 auto;
 }
