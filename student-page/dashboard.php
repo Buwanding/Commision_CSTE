@@ -42,18 +42,14 @@ $conn->close();
         <nav>
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
-                <li><a href="student-profile.php"> PROFILE </i> </a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
+                <li><a href="student-profile.php"> MY ACCOUNT </i> </a></li>
+                <li><a href="../index.html" class="logout">LOGOUT</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br><br><br><br><br>
 
     <main>
         <h2>Subjects Enrolled</h2>
@@ -72,13 +68,7 @@ $conn->close();
 
     </main>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     
 
     <footer>

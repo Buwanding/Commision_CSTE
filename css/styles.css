@@ -1,3 +1,4 @@
+/* Reset margins and padding for body and html, set font, and background image */
 body, html {
     margin: 0;
     padding: 0;
@@ -11,6 +12,7 @@ body, html {
     background-size: cover;
 }
 
+/* Background styling with a dark overlay for contrast */
 .background {
     display: flex;
     justify-content: center;
@@ -20,6 +22,7 @@ body, html {
     background: rgba(0, 0, 0, 0.5);
 }
 
+/* Form container styling: Centering, background color, padding, border radius, shadow, and text alignment */
 .form-container {
     background: #fff;
     padding: 20px;
@@ -29,21 +32,25 @@ body, html {
     text-align: center;
 }
 
+/* Styling for headings */
 h1 {
     margin-bottom: 10px;
 }
 
+/* Styling for paragraphs */
 p {
     font-size: 12px;
     color: #777;
     margin-bottom: 20px;
 }
 
+/* Input group styling: Margin and text alignment */
 .input-group {
     margin-bottom: 15px;
     text-align: left;
 }
 
+/* Label styling: Display as block, small font size, margin, and text color */
 .input-group label {
     display: block;
     font-size: 12px;
@@ -51,6 +58,7 @@ p {
     color: #000;
 }
 
+/* Input and select elements styling: Width, padding, border, and border radius */
 .input-group input,
 .input-group select {
     width: 100%;
@@ -60,6 +68,7 @@ p {
     box-sizing: border-box;
 }
 
+/* Button styling: Full width, padding, background color, border, and hover effects */
 button {
     width: 100%;
     padding: 10px;
@@ -71,10 +80,12 @@ button {
     cursor: pointer;
 }
 
+/* Hover effect for buttons: Darken background color */
 button:hover {
     background: #0056b3;
 }
 
+/* Forgot password link styling: Alignment, font size, and color */
 .forgot-password {
     display: block;
     text-align: right;
@@ -84,11 +95,13 @@ button:hover {
     margin-top: 10px;
 }
 
+/* Hover effect for forgot password and register links: Underline text */
 .forgot-password:hover,
 .register-text a:hover {
     text-decoration: underline;
 }
 
+/* Register text styling: Small font size and margin */
 .register-text {
     font-size: 12px;
     margin-top: 20px;

@@ -51,13 +51,15 @@ $passed_stmt->close();
         <nav>
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
-                <li><a href="#"> PROFILE </i> </a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
+                <li><a href="#"> MY ACCOUNT </i> </a></li>
+                <li><a href="../index.html" class="logout">LOGOUT</a></li>
             </ul>
         </nav>
     </div>
 </header>
-<br><br><br><br>
+
+<br><br><br><br><br><br><br><br><br><br>
+
 <main>
     <div class="upload-file">
         <h2><?php echo htmlspecialchars($activity_name); ?></h2>
@@ -82,7 +84,9 @@ $passed_stmt->close();
         <?php endif; ?>
     </div>
 </main>
-<br><br><br><br><br><br><br><br>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 <footer>
     <div class="footer-container">
         <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>

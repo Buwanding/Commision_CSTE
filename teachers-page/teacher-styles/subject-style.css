@@ -1,4 +1,6 @@
 /* Global Styles */
+
+/* General body styles: Sets the font, background color, and removes default margin and padding */
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -6,6 +8,7 @@ body {
     background-color: #afe5fd;
 }
 
+/* Header styles: Background color, text color, padding, and shadow effect */
 header {
     background-color: #08b1ff;
     color: white;
@@ -13,17 +16,21 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Header container: Flexbox layout to space out elements and align them centrally */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Logo styles: Font size, padding, and boldness */
 header .logo {
-    font-size: 24px;
+    font-size: 50px;
+    padding: 20px;
     font-weight: bold;
 }
 
+/* Navigation list styles: Removes bullets and padding, uses flexbox for horizontal layout */
 nav ul {
     list-style: none;
     padding: 0;
@@ -31,10 +38,12 @@ nav ul {
     display: flex;
 }
 
+/* Navigation list items: Adds spacing between items */
 nav ul li {
     margin-left: 20px;
 }
 
+/* Navigation links: Text color, removes underline, padding, rounded corners, and transition on hover */
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -43,11 +52,14 @@ nav ul li a {
     transition: background-color 0.3s ease;
 }
 
+/* Hover effects for navigation links and logout link: Changes background color */
 nav ul li a:hover, .logout a:hover {
     background-color: #005f99;
 }
 
 /* Main Content Styles */
+
+/* Main container: Sets max-width, centers with margin auto, styles padding, background, border-radius, and shadow */
 main {
     max-width: 900px;
     margin: 30px auto;
@@ -57,6 +69,7 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading styles for activity and subject details: Font size, margin, alignment, color, and boldness */
 .activity-details h2, .subject-details h1 {
     font-size: 28px;
     margin-bottom: 15px;
@@ -65,6 +78,7 @@ main {
     font-weight: bold;
 }
 
+/* Specific heading style for activity details: Smaller font size and color */
 .activity-details h1 {
     font-size: 24px;
     margin-bottom: 30px;
@@ -73,28 +87,35 @@ main {
 }
 
 /* Table Styles */
+
+/* General table styles: Full width, collapses borders, and bottom margin */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
+/* Table cell and header styles: Padding, alignment, and border */
 table th, table td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
+/* Table header styles: Background color and text color */
 table th {
     background-color: #f4f4f4;
     color: #333;
 }
 
+/* Table row hover effect: Changes background color on hover */
 table tr:hover {
     background-color: #f1f1f1;
 }
 
 /* Form Styles */
+
+/* Input and textarea fields: Full width, padding, border styling, rounded corners, and font size */
 form input[type="text"], form input[type="date"], form textarea {
     width: 100%;
     padding: 8px;
@@ -106,15 +127,17 @@ form input[type="text"], form input[type="date"], form textarea {
     font-size: 16px;
 }
 
+/* Textarea specific styles: Height and vertical resizing */
 form textarea {
     height: 100px;
     resize: vertical;
 }
 
+/* Button styles: Block display, dynamic width, padding, background color, text color, border-radius, cursor, and transitions */
 form button, .download-btn {
-    display: block; /* Change to block to make the button take full width available */
-    width: fit-content; /* This makes the button only as wide as its content */
-    padding: 10px 80px; /* Adjust the padding to your desired size */
+    display: block;
+    width: fit-content;
+    padding: 10px 80px;
     background-color: #08b1ff;
     color: white;
     border: none;
@@ -122,20 +145,22 @@ form button, .download-btn {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 10px; /* This centers the button horizontally */
+    margin: 10px;
 }
 
-
+/* Hover effect for buttons: Darkens background color and slight scaling */
 form button:hover, .download-btn:hover {
     background-color: #007bb5;
     transform: scale(1.05);
 }
 
+/* Active state for buttons: Darkens background color and resets scaling */
 form button:active, .download-btn:active {
     background-color: #005f8b;
     transform: scale(1);
 }
 
+/* Download button styles: Inline-block display, padding, background color, text color, rounded corners, text alignment, shadow, and transitions */
 .download-btn {
     display: inline-block;
     padding: 10px 20px;
@@ -150,13 +175,15 @@ form button:active, .download-btn:active {
     transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
+/* Download button icon spacing */
 .download-btn i {
     margin-right: 8px;
 }
 
+/* Update button styles: Padding, background color, text color, border-radius, cursor, and transitions */
 .update-button {
     padding: 10px 50px;
-    background-color: #08b1ff; /* Distinct color for the update button */
+    background-color: #08b1ff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -166,23 +193,27 @@ form button:active, .download-btn:active {
     margin: 20px;
 }
 
+/* Hover effect for update button: Darkens background color and slight scaling */
 .update-button:hover {
-    background-color: #005f8b; /* Hover effect */
+    background-color: #005f8b;
     transform: scale(1.05);
 }
 
+/* Active state for update button: Darkens background color and resets scaling */
 .update-button:active {
-    background-color: #005f8b; /* Active state */
+    background-color: #005f8b;
     transform: scale(1);
 }
 
-/* Optional: If you want to center the form containing the update button */
+/* Optional: Aligns the form containing the update button to the right */
 .activity-item form {
     display: flex;
     justify-content: right;
 }
 
 /* Footer Styles */
+
+/* Footer styles: Background color, text color, center text, padding, and positions it at the bottom */
 footer {
     background-color: #171717;
     color: white;
@@ -193,6 +224,7 @@ footer {
     bottom: 0;
 }
 
+/* Footer container: Centers footer content with a max width */
 .footer-container {
     max-width: 900px;
     margin: 0 auto;

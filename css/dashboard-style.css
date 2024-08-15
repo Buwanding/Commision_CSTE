@@ -1,3 +1,4 @@
+/* General styles for the body to apply a font family, remove margins and padding, and set a background color */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,14 +6,7 @@ body {
     background-color: #afe5fd;
 }
 
-header {
-    background-color: #08b1ff;
-    color: white;
-    padding: 0 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
+/* Header styles: Background color, text color, padding, and shadow to give it depth */
 header {
     background-color: #08b1ff;
     color: white;
@@ -20,17 +14,21 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Flexbox layout for the header container to position logo and navigation correctly */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Styling the logo: Font size and padding for emphasis */
 header .logo {
-    font-size: 24px;
+    font-size: 30px;
+    padding: 30px;
     font-weight: bold;
 }
 
+/* Navigation list: Remove default list styles and align items in a row */
 nav ul {
     list-style: none;
     padding: 0;
@@ -38,10 +36,12 @@ nav ul {
     display: flex;
 }
 
+/* Navigation list items: Margin between them for spacing */
 nav ul li {
     margin-left: 20px;
 }
 
+/* Navigation links: Text color, padding, and transition effect for hover state */
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -50,11 +50,12 @@ nav ul li a {
     transition: background-color 0.3s ease;
 }
 
+/* Hover effect for navigation links and logout button: Change background color */
 nav ul li a:hover, .logout a:hover {
     background-color: #005f99;
 }
 
-/* Main Content Styles */
+/* Main content area styles: Width, margin, padding, background color, border-radius, and shadow */
 main {
     max-width: 900px;
     margin: 30px auto;
@@ -64,22 +65,14 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
-main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
+/* Flexbox for subject cards, allowing them to wrap and have a gap between them */
 .subjects-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
+/* Styling subject cards: Padding, border-radius, color, text alignment, and shadow */
 .subject-card {
     padding: 20px;
     border-radius: 8px;
@@ -90,19 +83,23 @@ main {
     max-width: 200px;
 }
 
+/* Ensure links inside subject cards inherit their color and remove underline */
 .subject-card a {
     color: inherit;
     text-decoration: none;
 }
 
+/* Styling for the add subject form: Top margin */
 .add-subject-form {
     margin-top: 20px;
 }
 
+/* Styling for form groups: Bottom margin */
 .form-group {
     margin-bottom: 20px;
 }
 
+/* Label styling: Display as block, bottom margin, font size, and font weight */
 .form-group label {
     display: block;
     margin-bottom: 5px;
@@ -110,6 +107,7 @@ main {
     font-weight: bold;
 }
 
+/* Input fields styling: Width, padding, border, border-radius, and shadow */
 .form-group input[type="text"],
 .form-group input[type="color"],
 .form-group textarea {
@@ -120,6 +118,7 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Focus state for inputs: Change border color and shadow */
 .form-group input[type="text"]:focus,
 .form-group input[type="color"]:focus,
 .form-group textarea:focus {
@@ -128,6 +127,7 @@ main {
     outline: none;
 }
 
+/* Styling for the submit button in the add subject form: Width, padding, background color, border, and transition effects */
 .add-subject-form button {
     width: 100%;
     padding: 12px;
@@ -142,11 +142,13 @@ main {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
+/* Hover effect for the submit button: Darken the background color and increase shadow */
 .add-subject-form button:hover {
     background-color: #007bb5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Footer styling: Background color, text color, alignment, padding, and position */
 footer {
     background-color: #171717;
     color: white;
@@ -156,6 +158,7 @@ footer {
     width: 100%;
 }
 
+/* Footer container styles: Set maximum width and center it */
 .footer-container {
     max-width: 800px;
     margin: 0 auto;

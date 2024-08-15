@@ -1,20 +1,15 @@
 <?php
-// Ensure database connection is included
-require '../php/db.php';
+require '../php/db.php'; // Include the database connection.
 
-// Check if file_path is set
-if (isset($_GET['file_path'])) {
+if (isset($_GET['file_path'])) { // Check if the file path is provided via GET.
     $file_path = $_GET['file_path'];
 
-    // Sanitize the file path to avoid security issues
-    $file_path = basename($file_path);
+    $file_path = basename($file_path); // Sanitize the file path to avoid security issues.
 
-    // Define the full path to the file
-    $full_path = './uploads/' . $file_path;
+    $full_path = './uploads/' . $file_path; // Define the full path to the file.
 
-    // Check if the file exists
-    if (file_exists($full_path)) {
-        // Set headers to force download
+    if (file_exists($full_path)) { // Check if the file exists.
+        // Set headers to force the download of the file.
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="' . $file_path . '"');
@@ -23,13 +18,12 @@ if (isset($_GET['file_path'])) {
         header('Pragma: public');
         header('Content-Length: ' . filesize($full_path));
 
-        // Read the file and output it
-        readfile($full_path);
-        exit;
+        readfile($full_path); // Read the file and output it to the browser.
+        exit; // Stop script execution.
     } else {
-        echo 'File not found.';
+        echo 'File not found.'; // Output an error message if the file doesn't exist.
     }
 } else {
-    echo 'Invalid request.';
+    echo 'Invalid request.'; // Output an error message if no file path is provided.
 }
 ?>

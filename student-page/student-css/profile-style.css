@@ -1,102 +1,149 @@
-/* profile-style.css */
-
+/* General body styling: Font family, background color, margin, and padding */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #afe5fd;
     margin: 0;
     padding: 0;
 }
 
+/* Header styles: Background color, text color, padding, and shadow */
+header {
+    background-color: #08b1ff;
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox layout for the header container */
 .header-container {
-    background-color: #4CAF50;
-    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
 }
 
-.logo {
-    font-size: 24px;
+/* Styling for the logo inside the header */
+header .logo {
+    font-size: 30px;
+    padding: 30px;
     font-weight: bold;
 }
 
+/* Navigation list styles: Flexbox for layout, margin between list items */
 nav ul {
-    list-style-type: none;
-    margin: 0;
+    list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
-    gap: 15px;
 }
 
+/* Margin between navigation list items */
 nav ul li {
-    display: inline;
+    margin-left: 20px;
 }
 
+/* Navigation links styling: Color, padding, border-radius, and hover effect */
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
-nav ul li a:hover, nav ul li a.logout {
-    text-decoration: underline;
+/* Logout button styles: Same as other navigation links */
+.logout a:hover, nav ul li a:hover {
+    background-color: #005f99;
 }
 
-.profile-container {
-    max-width: 500px;
+/* Main content area styling: Centering, padding, background color, border-radius, shadow, and text alignment */
+main {
+    max-width: 600px;
     margin: 50px auto;
-    padding: 20px;
-    background-color: white;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.profile-container h2 {
-    text-align: center;
+/* Profile picture styles: Centering, size, and border */
+.profile-pic {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Profile name styling: Font size and color */
+.profile-name {
+    font-size: 24px;
+    margin-bottom: 20px;
     color: #333;
 }
 
-.profile-container form {
+/* Flexbox layout for profile details and forms */
+.profile-details {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-top: 30px;
 }
 
-.profile-container label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.profile-container input[type="password"] {
-    padding: 10px;
+/* Input fields styling: Width, padding, border, and border-radius */
+.profile-details input[type="text"],
+.profile-details input[type="email"],
+.profile-details input[type="password"] {
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.profile-container button {
-    padding: 10px;
-    background-color: #4CAF50;
+/* Focus state for inputs: Border color change, shadow, and outline removal */
+.profile-details input[type="text"]:focus,
+.profile-details input[type="email"]:focus,
+.profile-details input[type="password"]:focus {
+    border-color: #08b1ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* Submit button styling: Width, padding, background color, border, and transition effects */
+.profile-details button {
+    width: 100%;
+    padding: 12px;
+    background-color: #08b1ff;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.profile-container button:hover {
-    background-color: #45a049;
+/* Hover effect for submit button: Darken background color and increase shadow */
+.profile-details button:hover {
+    background-color: #007bb5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.footer-container {
+/* Footer styling: Background color, text color, alignment, padding, and position */
+footer {
     background-color: #171717;
     color: white;
     text-align: center;
-    padding: 10px 20px;
-    position: fixed;
-    bottom: 0;
+    padding: 10px 0;
+    position: absolute;
     width: 100%;
 }
 
-.footer-container p {
-    margin: 0;
+/* Footer container styling: Centering with max width */
+.footer-container {
+    max-width: 800px;
+    margin: 0 auto;
 }

@@ -38,7 +38,7 @@ if ($activity_id) {
             <nav>
                 <ul>
                     <li><a href="dashboard.php">HOME</a></li>
-                    <li><a href="teacher-profile.php">PROFILE</a></li>
+                    <li><a href="teacher-profile.php">MY ACCOUNT</a></li>
                     <li><a href="../index.html" class="logout">LOGOUT</a></li>
                 </ul>
             </nav>

@@ -62,17 +62,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
         <nav>
             <ul>
-                <li><a href="dashboard.php">HOME</a></li>
-                <li><a href="#">PROFILE</a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
+                <li><a href="dashboard.php"> HOME </i> </a></li>
+                <li><a href="teacher-profile.php"> MY ACCOUNT </i> </a></li>
+                <li><a href="../index.html" class="logout">LOGOUT</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
+<br><br><br>
+
 <main>
     <div class="profile-container">
         <h2>Change Password</h2>
+        <br>
         <form action="" method="post">
             <label for="current_password">Current Password:</label>
             <input type="password" id="current_password" name="current_password" required>
@@ -82,11 +85,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="confirm_password">Confirm New Password:</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
-
+            <br>
             <button type="submit">Update Password</button>
+            <br>
         </form>
     </div>
 </main>
+
+<br><br><br><br>
 
 <footer>
     <div class="footer-container">

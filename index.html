@@ -6,22 +6,29 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
-
 <body>
 
+    <!-- Main background container -->
     <div class="background">
-
+    
+        <!-- Form container for login form -->
         <div class="form-container">
+        
+            <br>
 
-          <br>
-
+            <!-- Logo image -->
             <img src="./images/LOGO.png" alt="LOGO" width="100" height="100">
             
+            <!-- Title of the system -->
             <h1>SAMS</h1>
 
+            <!-- Tagline or slogan -->
             <p>Your Partner in Student Success</p>
 
+            <!-- Login form -->
             <form id="loginForm" action="./php/login.php" method="POST">
+                
+                <!-- Username input group -->
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input
@@ -33,6 +40,7 @@
                     />
                 </div>
 
+                <!-- Password input group -->
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input
@@ -44,14 +52,17 @@
                     />
                 </div>
 
+                <!-- Link to reset the password -->
                 <a href="#" class="forgot-password">Forgot your password?</a>
 
                 <br><br>
 
+                <!-- Submit button for the form -->
                 <button type="submit" class="login-btn">LOGIN</button>
 
             </form>
 
+            <!-- Link to register page for new users -->
             <p class="register-text">
                 Don't have an account? <a href="register.html">Register Now</a>
             </p>

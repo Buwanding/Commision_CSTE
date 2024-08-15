@@ -61,13 +61,14 @@ $stud_stmt->close();
         <nav>
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li>
-                <li><a href="teacher-profile.php"> PROFILE </i> </a></li>
+                <li><a href="teacher-profile.php"> MY ACCOUNT </i> </a></li>
                 <li><a href="../index.html" class="logout">LOGOUT</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
+<br><br><br>
 
 <main>
     <div class="subject-details"> 
@@ -188,6 +189,8 @@ $stud_stmt->close();
         </div>
     </div>
 </main>
+
+<br><br><br>
 
 <footer>
     <div class="footer-container">

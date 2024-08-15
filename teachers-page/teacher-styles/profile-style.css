@@ -1,12 +1,14 @@
 /* profile-style.css */
 
+/* General body styles: Sets the font, background color, and removes default margin and padding */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #afe5fd;
     margin: 0;
     padding: 0;
 }
 
+/* Header styles: Background color, text color, padding, and shadow effect */
 header {
     background-color: #08b1ff;
     color: white;
@@ -14,17 +16,21 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Header container: Flexbox layout to space out elements and align them centrally */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Logo styles: Font size, padding, and boldness */
 header .logo {
-    font-size: 24px;
+    font-size: 30px;
+    padding: 10px;
     font-weight: bold;
 }
 
+/* Navigation list styles: Removes bullets and padding, uses flexbox for horizontal layout */
 nav ul {
     list-style: none;
     padding: 0;
@@ -32,55 +38,66 @@ nav ul {
     display: flex;
 }
 
+/* Navigation list items: Adds spacing between items */
 nav ul li {
     margin-left: 20px;
-}
+}   
 
+/* Navigation links: Text color, removes underline, padding, rounded corners, and transition on hover */
 nav ul li a {
     color: white;
     text-decoration: none;
+    font-size: 20px;
     padding: 8px 15px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
+/* Hover effects for navigation links and logout link: Changes background color */
 nav ul li a:hover, .logout a:hover {
     background-color: #005f99;
 }
 
+/* Profile container: Sets max-width, centers with margin auto, styles padding, background, border radius, and shadow */
 .profile-container {
     max-width: 500px;
     margin: 50px auto;
+    border-radius: 10px;
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Profile container header: Center aligns text and sets color */
 .profile-container h2 {
     text-align: center;
     color: #333;
 }
 
+/* Form layout within profile container: Uses flexbox for vertical layout with spacing */
 .profile-container form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* Label styling: Makes the label text bold and adds a small bottom margin */
 .profile-container label {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
+/* Input field for password: Padding, border styling, and rounded corners */
 .profile-container input[type="password"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
+/* Submit button styles: Padding, background color, text color, border-radius, and cursor */
 .profile-container button {
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #08b1ff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -88,11 +105,12 @@ nav ul li a:hover, .logout a:hover {
     font-size: 16px;
 }
 
+/* Hover effect for submit button: Changes background color */
 .profile-container button:hover {
-    background-color: #45a049;
+    background-color: #0086c4;
 }
 
-/* Footer Styles */
+/* Footer Styles: Background color, text color, center text, padding, and positions it at the bottom */
 footer {
     background-color: #171717;
     color: white;
@@ -103,6 +121,7 @@ footer {
     bottom: 0;
 }
 
+/* Footer container: Centers footer content with a max width */
 .footer-container {
     max-width: 900px;
     margin: 0 auto;

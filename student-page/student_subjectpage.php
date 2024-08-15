@@ -22,14 +22,14 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
             <nav>
                 <ul>
                     <li><a href="dashboard.php">HOME</a></li>
-                    <li><a href="teacher-profile.php">PROFILE</a></li>
+                    <li><a href="teacher-profile.php">MY ACCOUNT</a></li>
                     <li><a href="../index.html" class="logout">LOGOUT</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-<br>
+<br><br><br><br>
 
     <main>
 
@@ -68,11 +68,8 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         
     </main>
 
-    <br>
-    <br>
-    <br>
+    <br><br><br><br><br><br><br><br><br>
     
-
     <footer>
         <div class="footer-container">
             <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>

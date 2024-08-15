@@ -7,27 +7,46 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+    <!-- Main background container -->
     <div class="background">
+    
+        <!-- Form container for registration form -->
         <div class="form-container">
+        
+            <!-- Title of the system -->
             <h1>SAMS</h1>
+            
+            <!-- Tagline or slogan -->
             <p>Your Partner in Student Success</p>
+            
+            <!-- Registration form -->
             <form id="registerForm" action="./php/register.php" method="POST">
+            
+                <!-- First name input group -->
                 <div class="input-group">
                     <label for="first-name">First Name</label>
                     <input type="text" id="first-name" name="first_name" placeholder="Enter your First Name" required>
                 </div>
+                
+                <!-- Last name input group -->
                 <div class="input-group">
                     <label for="last-name">Last Name</label>
                     <input type="text" id="last-name" name="last_name" placeholder="Enter your Last Name" required>
                 </div>
+                
+                <!-- Email address input group -->
                 <div class="input-group">
                     <label for="email">E-mail Address</label>
                     <input type="email" id="email" name="email" placeholder="Enter your E-mail Address" required>
                 </div>
+                
+                <!-- Contact number input group -->
                 <div class="input-group">
                     <label for="contact-number">Contact Number</label>
                     <input type="text" id="contact-number" name="contact_number" placeholder="Enter your Contact Number" required>
                 </div>
+                
+                <!-- Role selection dropdown -->
                 <div class="input-group">
                     <label for="role">Role</label>
                     <select id="role" name="role" required>
@@ -36,20 +55,32 @@
                         <option value="student">Student</option>
                     </select>
                 </div>
+                
+                <!-- Container for additional fields (e.g., parent's information for students) -->
                 <div id="additional-fields"></div>
+                
+                <!-- Password input group -->
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
+                
+                <!-- Submit button for the form -->
                 <button type="submit" id="sign-in-button">SIGN IN</button>
+                
             </form>
         </div>
     </div>
+
+    <!-- Script to dynamically show/hide additional fields based on role selection -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const roleSelect = document.getElementById('role');
             const additionalFields = document.getElementById('additional-fields');
+            
+            // Event listener for role selection
             roleSelect.addEventListener('change', function () {
+                // If the role is 'student', show additional fields
                 if (roleSelect.value === 'student') {
                     additionalFields.innerHTML = `
                         <div class="input-group">
@@ -62,6 +93,7 @@
                         </div>
                     `;
                 } else {
+                    // Otherwise, clear additional fields
                     additionalFields.innerHTML = '';
                 }
             });
