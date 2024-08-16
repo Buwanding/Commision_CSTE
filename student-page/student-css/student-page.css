@@ -1,145 +1,145 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #afe5fd;
+    font-family: Arial, sans-serif; /* Use Arial as the primary font, falling back to a generic sans-serif if unavailable */
+    margin: 0; /* Remove default margin from the body */
+    padding: 0; /* Remove default padding from the body */
+    background-color: #afe5fd; /* Set the background color of the page to a light blue */
 }
 
 header {
-    background-color: #08b1ff;
-    color: white;
-    padding: 15px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #08b1ff; /* Set the header background to a bright blue */
+    color: white; /* Set the text color in the header to white */
+    padding: 15px 20px; /* Add padding inside the header for spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a slight shadow below the header for depth */
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; /* Use flexbox layout for the header container */
+    justify-content: space-between; /* Space out the items in the header to be at opposite ends */
+    align-items: center; /* Vertically align items to the center */
 }
 
 header .logo {
-    font-size: 24px;
-    color: white;
-    font-weight: bold;
+    font-size: 24px; /* Set the font size for the logo text */
+    color: white; /* Ensure the logo text color is white */
+    font-weight: bold; /* Make the logo text bold */
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
+    list-style: none; /* Remove default list bullets */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox layout for the navigation list */
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin-left: 20px; /* Add spacing between each list item */
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    color: white; /* Set the link text color to white */
+    text-decoration: none; /* Remove underline from links */
+    padding: 8px 15px; /* Add padding around the link text */
+    border-radius: 4px; /* Slightly round the corners of the link's background */
+    transition: background-color 0.3s ease; /* Smooth transition for background color on hover */
 }
 
 nav ul li a:hover, .logout a:hover {
-    background-color: #005f99;
+    background-color: #005f99; /* Change the background color on hover to a darker blue */
 }
 
 main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Limit the width of the main content area */
+    margin: 20px auto; /* Center the main content and add some margin on top/bottom */
+    padding: 20px; /* Add padding inside the main content area */
+    background-color: #fff; /* Set the background of the main content area to white */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow around the main content area */
 }
 
 .subject-details {
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    padding: 20px; /* Add padding inside the subject details area */
+    border-radius: 10px; /* Round the corners of the subject details box */
+    margin-bottom: 20px; /* Add space below the subject details section */
 }
 
 .subject-details p {
-    margin: 0 0 20px;
+    margin: 0 0 20px; /* Add space below each paragraph in the subject details */
 }
 
 main {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Limit the width of the main content area */
+    margin: 50px auto; /* Center the main content and add more margin on top/bottom */
+    padding: 20px; /* Add padding inside the main content area */
+    background-color: #fff; /* Set the background of the main content area to white */
+    border-radius: 10px; /* Round the corners of the main content area */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow around the main content area */
 }
 
 h2 {
-    text-align: center;
-    color: #333;
+    text-align: center; /* Center-align the heading text */
+    color: #333; /* Set the heading text color to a dark gray */
 }
 
 .upload-file {
-    text-align: center;
-    padding: 10px 30px;
+    text-align: center; /* Center-align the content within the upload file section */
+    padding: 10px 30px; /* Add padding around the upload file section */
 }
 
 .submitted-message {
-    color: #28a745;
-    font-weight: bold;
-    margin-bottom: 20px;
+    color: #28a745; /* Set the message text color to a green shade indicating success */
+    font-weight: bold; /* Make the message text bold */
+    margin-bottom: 20px; /* Add space below the message */
 }
 
 .remarks {
-    color: #6c757d;
-    margin-bottom: 20px;
+    color: #6c757d; /* Set the remarks text color to a muted gray */
+    margin-bottom: 20px; /* Add space below the remarks text */
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; /* Use flexbox layout for the form */
+    flex-direction: column; /* Arrange form elements in a column */
+    align-items: center; /* Center-align the form elements */
 }
 
 label {
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
+    font-weight: bold; /* Make the label text bold */
+    margin-bottom: 10px; /* Add space below each label */
+    color: #333; /* Set the label text color to a dark gray */
 }
 
 input[type="file"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-size: 16px;
+    padding: 10px; /* Add padding inside the file input */
+    border: 1px solid #ccc; /* Add a light gray border around the file input */
+    border-radius: 5px; /* Slightly round the corners of the file input */
+    margin-bottom: 20px; /* Add space below the file input */
+    font-size: 16px; /* Increase the font size inside the file input */
 }
 
 .upload-btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 120px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    background-color: #007bff; /* Set the button background color to a blue shade */
+    color: #fff; /* Set the button text color to white */
+    padding: 10px 120px; /* Add padding inside the button for size */
+    border: none; /* Remove the default border */
+    border-radius: 5px; /* Slightly round the corners of the button */
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+    font-size: 16px; /* Set the font size inside the button */
+    transition: background-color 0.3s ease; /* Smooth transition for background color on hover */
 }
 
 .upload-btn:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Change the button background to a darker blue on hover */
 }
 
 footer {
-    background-color: #000;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: absolute;
-    width: 100%;
+    background-color: #000; /* Set the footer background color to black */
+    color: white; /* Set the footer text color to white */
+    text-align: center; /* Center-align the footer text */
+    padding: 10px 0; /* Add padding inside the footer */
+    position: absolute; /* Position the footer at the bottom */
+    width: 100%; /* Make the footer span the full width of the page */
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Limit the width of the footer content */
+    margin: 0 auto; /* Center the footer content */
 }
