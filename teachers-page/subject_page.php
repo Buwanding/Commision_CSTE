@@ -55,6 +55,27 @@ $stud_stmt->close(); // Close the statement for fetching student details
     <title><?php echo htmlspecialchars($subject_name); ?></title> <!-- Set the page title to the subject name -->
     <link rel="stylesheet" href="./teacher-styles/subject-style.css"> <!-- Link to the CSS file for styling -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Link to Font Awesome icons -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
 
@@ -63,8 +84,8 @@ $stud_stmt->close(); // Close the statement for fetching student details
         <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> <!-- System logo -->
         <nav>
             <ul>
-                <li><a href="dashboard.php">  HOME </i> </a></li> <!-- Link to the dashboard -->
-                <li><a href="teacher-profile.php"> MY ACCOUNT </i> </a></li> <!-- Link to the teacher's profile page -->
+                <li><a href="dashboard.php">HOME</a></li> <!-- Link to the dashboard -->
+                <li><a href="teacher-profile.php">MY ACCOUNT</a></li> <!-- Link to the teacher's profile page -->
                 <li><a href="../index.html" class="logout">LOGOUT</a></li> <!-- Link to logout -->
             </ul>
         </nav>
@@ -119,61 +140,80 @@ $stud_stmt->close(); // Close the statement for fetching student details
         <!-- Display the list of activities for the subject -->
         <div class="list-container">
         <h2>Activities</h2>
-        <ul>
-            <?php
-            // Fetch activities for the subject
-            $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
-            $activity_stmt = $conn->prepare($activity_query); // Prepare the SQL statement
-            $activity_stmt->bind_param("i", $subject_id); // Bind the subject ID to the query
-            $activity_stmt->execute(); // Execute the query
-            $activity_result = $activity_stmt->get_result(); // Get the result set
+        <table>
+            <thead>
+                <tr>
+                    <th>Activity Name</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                     <th>View Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Fetch activities for the subject
+                $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
+                $activity_stmt = $conn->prepare($activity_query); // Prepare the SQL statement
+                $activity_stmt->bind_param("i", $subject_id); // Bind the subject ID to the query
+                $activity_stmt->execute(); // Execute the query
+                $activity_result = $activity_stmt->get_result(); // Get the result set
+                
+                while ($activity = $activity_result->fetch_assoc()) { 
+                    // Loop through each activity associated with the subject
+                    echo "<tr>
+                            <td>" . htmlspecialchars($activity['activity_name']) . "</td>
+                            <td>" . htmlspecialchars($activity['description']) . "</td>
+                            <td>" . htmlspecialchars($activity['deadline']) . "</td>
+                            <td>
             
-            while ($activity = $activity_result->fetch_assoc()) { 
-                // Loop through each activity associated with the subject
-                echo "<li class='activity-item'>" .
-
-                        "<span class='activity-info'>" .
-                            "<a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id'])  . "&subject_name=" .
-                            htmlspecialchars($subject_name) . "&activity_name=". htmlspecialchars($activity['activity_name']) . "'>" . htmlspecialchars($activity['activity_name']).
-                            "</a>: " . htmlspecialchars($activity['description']) . // Display the activity details with a link to its page
-                        "</span>" .
-
-                        "<form action='../php/update.php' method='post'>" .
-                            "<input type='hidden' name='subject_id' value='" . htmlspecialchars($subject_id) . "'>" . 
-                            "<input type='hidden' name='activity_name' value='" . htmlspecialchars($activity['activity_name']) . "'>" .
-                            "<input type='hidden' name='deadline' value='" . htmlspecialchars($activity['deadline']) . "'>" .
-                            "<button type='submit' class='update-button'>Update</button>" . // Form to update the activity
-                        "</form>" .
-
-                    "</li>";
-            }
-            
-            $activity_stmt->close(); // Close the statement for fetching activities
-            ?>
-        </ul>
-</div>
+                                <form action='../php/update.php' method='post' style='display:inline;'>
+                                    <input type='hidden' name='subject_id' value='" . htmlspecialchars($subject_id) . "'>
+                                    <input type='hidden' name='activity_name' value='" . htmlspecialchars($activity['activity_name']) . "'>
+                                    <input type='hidden' name='deadline' value='" . htmlspecialchars($activity['deadline']) . "'>
+                                    <button type='submit' class='update-button'>Update</button>
+                                </form>
+                            </td>
+                            <td> <a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id']) . "&subject_name=" . htmlspecialchars($subject_name) . "&activity_name=" . htmlspecialchars($activity['activity_name']) . "'>View Details</a></td>
+                          </tr>";
+                }
+                
+                $activity_stmt->close(); // Close the statement for fetching activities
+                ?>
+            </tbody>
+        </table>
+        </div>
 
         <br><br>
 
         <!-- Display the list of students assigned to the subject -->
         <div class="list-container">
             <h2>Assigned Students</h2>
-            <ul>
-                <?php
-                // Fetch students assigned to the subject
-                $student_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
-                $student_stmt = $conn->prepare($student_query); // Prepare the SQL statement
-                $student_stmt->bind_param("i", $subject_id); // Bind the subject ID to the query
-                $student_stmt->execute(); // Execute the query
-                $student_result = $student_stmt->get_result(); // Get the result set
-                
-                while ($student = $student_result->fetch_assoc()) {
-                    echo "<li>" . htmlspecialchars($student['student_email']) . "</li>"; // Display each student's email
-                }
-                
-                $student_stmt->close(); // Close the statement for fetching students
-                ?>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Fetch students assigned to the subject
+                    $student_query = "SELECT * FROM student_subjects WHERE subject_id = ?";
+                    $student_stmt = $conn->prepare($student_query); // Prepare the SQL statement
+                    $student_stmt->bind_param("i", $subject_id); // Bind the subject ID to the query
+                    $student_stmt->execute(); // Execute the query
+                    $student_result = $student_stmt->get_result(); // Get the result set
+                    
+                    while ($student = $student_result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>" . htmlspecialchars($student['student_email']) . "</td>
+                              </tr>";
+                    }
+                    
+                    $student_stmt->close(); // Close the statement for fetching students
+                    ?>
+                </tbody>
+            </table>
         </div>
 
         <br><br>
@@ -181,16 +221,26 @@ $stud_stmt->close(); // Close the statement for fetching student details
         <!-- Display the list of parents associated with the students -->
         <div class="list-container">
             <h2>List Parents</h2>
-            <?php foreach ($students as $student_data): ?>
-                <div class="student-card">
-                    <?php foreach ($student_data['parents'] as $parent): ?>
-                        <ul>
-                            <li><?= htmlspecialchars($parent['parents_name']) ?></li> <!-- Display parent's name -->
-                            <li><?= htmlspecialchars($parent['contact_number']) ?></li> <!-- Display parent's contact number -->
-                        </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Email</th>
+                        <th>Parent Name</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($students as $student_data): ?>
+                        <?php foreach ($student_data['parents'] as $parent): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($student_data['student']['student_email']) ?></td>
+                                <td><?= htmlspecialchars($parent['parents_name']) ?></td>
+                                <td><?= htmlspecialchars($parent['contact_number']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
-                </div>
-            <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </main>

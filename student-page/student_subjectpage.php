@@ -25,6 +25,29 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
     
     <!-- Link to the Font Awesome library for using icons in the HTML -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Optional: Add some additional styling for the table -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,8 +59,8 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
             <ul>
                 <!-- Navigation link to the dashboard page -->
                 <li><a href="dashboard.php">HOME</a></li> 
-                <!-- Navigation link to the teacher's profile page -->
-                <li><a href="teacher-profile.php">MY ACCOUNT</a></li> 
+                <!-- Navigation link to the student's profile page -->
+                <li><a href="student-profile.php">MY ACCOUNT</a></li> 
                 <!-- Navigation link to log out, redirecting to the main page -->
                 <li><a href="../index.html" class="logout">LOGOUT</a></li> 
             </ul>
@@ -52,11 +75,11 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
     <div class="subject-details">
         <!-- Display the subject name in a large heading, centered on the page -->
         <center>
-            <h1><?php echo htmlspecialchars($_REQUEST["subject"]); ?></h1>
+            <h1><?php echo htmlspecialchars($subject_name); ?></h1>
         </center>
         <!-- Display the subject description in a smaller heading, centered below the subject name -->
         <center>
-            <h4><?php echo htmlspecialchars($_REQUEST["subject_des"]); ?></h4>
+            <h4><?php echo htmlspecialchars($subject_des); ?></h4>
         </center>
 
         <!-- Additional spacing and a horizontal rule for visual separation -->
@@ -67,37 +90,50 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         <!-- Header for the list of activities associated with the subject -->
         <h2>Activities:</h2> 
 
-        <ul>
-            <?php
-            // Include the database connection script to establish a connection to the database.
-            require '../php/db.php'; 
-            
-            // Prepare an SQL query to retrieve activities related to the subject by its ID.
-            $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
-            
-            // Prepare the SQL statement to prevent SQL injection.
-            $activity_stmt = $conn->prepare($activity_query); 
-            
-            // Bind the 'subject_id' as an integer parameter to the SQL query.
-            $activity_stmt->bind_param("i", $subject_id); 
-            
-            // Execute the prepared statement.
-            $activity_stmt->execute(); 
-            
-            // Retrieve the result set from the executed statement.
-            $activity_result = $activity_stmt->get_result(); 
-            
-            // Loop through each activity retrieved from the database.
-            while ($activity = $activity_result->fetch_assoc()) {
-                // Create a list item with a link to the 'student_activity.php' page, passing activity details in the URL query string.
-                // Each activity name is displayed as a clickable link, followed by its description.
-                echo "<li><a href='student_activity.php?activity_id=" . htmlspecialchars($activity['id']) . "&activity_name=" . htmlspecialchars($activity['activity_name']) . "&subject_name=" . htmlspecialchars($subject_name) . "'>" . htmlspecialchars($activity['activity_name']) . "</a>: " . htmlspecialchars($activity['description']) . "</li>";
-            }
-            
-            // Close the prepared statement to free up resources.
-            $activity_stmt->close(); 
-            ?>
-        </ul>
+        <!-- Table to display activities -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Activity Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Include the database connection script to establish a connection to the database.
+                require '../php/db.php'; 
+                
+                // Prepare an SQL query to retrieve activities related to the subject by its ID.
+                $activity_query = "SELECT * FROM activities WHERE subject_id = ?";
+                
+                // Prepare the SQL statement to prevent SQL injection.
+                $activity_stmt = $conn->prepare($activity_query); 
+                
+                // Bind the 'subject_id' as an integer parameter to the SQL query.
+                $activity_stmt->bind_param("i", $subject_id); 
+                
+                // Execute the prepared statement.
+                $activity_stmt->execute(); 
+                
+                // Retrieve the result set from the executed statement.
+                $activity_result = $activity_stmt->get_result(); 
+                
+                // Loop through each activity retrieved from the database.
+                while ($activity = $activity_result->fetch_assoc()) {
+                    // Create a table row for each activity with its name, description, and a link to its details.
+                    echo "<tr>
+                            <td>" . htmlspecialchars($activity['activity_name']) . "</td>
+                            <td>" . htmlspecialchars($activity['description']) . "</td>
+                            <td><a href='student_activity.php?activity_id=" . htmlspecialchars($activity['id']) . "&activity_name=" . htmlspecialchars($activity['activity_name']) . "&subject_name=" . htmlspecialchars($subject_name) . "'>View Details</a></td>
+                          </tr>";
+                }
+                
+                // Close the prepared statement to free up resources.
+                $activity_stmt->close(); 
+                ?>
+            </tbody>
+        </table>
     </div>
 </main>
 
@@ -113,4 +149,3 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
 
 </body>
 </html>
-
