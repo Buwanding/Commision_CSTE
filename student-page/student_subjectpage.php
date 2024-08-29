@@ -18,7 +18,7 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure the webpage is responsive to different screen sizes -->
     
     <!-- Dynamically set the title of the page using the subject name, ensuring it is properly escaped to avoid XSS attacks -->
-    <title><?php echo htmlspecialchars($_REQUEST["subject"]); ?></title>
+    <title><?php echo htmlspecialchars($subject_name); ?></title>
     
     <!-- Link to the external CSS file for the page's styling -->
     <link rel="stylesheet" href="./student-css/student-page.css">
@@ -46,6 +46,15 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         }
         tr:hover {
             background-color: #f1f1f1;
+        }
+        .search-bar {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .view-details {
+            text-align: center; /* Center the link inside the cell */
         }
     </style>
 </head>
@@ -88,10 +97,13 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         <br>
 
         <!-- Header for the list of activities associated with the subject -->
-        <h2>Activities:</h2> 
+        <h2>Activities</h2> 
+
+        <!-- Search bar for filtering table rows -->
+        <input type="text" id="activitySearch" class="search-bar" placeholder="Search for activities...">
 
         <!-- Table to display activities -->
-        <table>
+        <table id="activityTable">
             <thead>
                 <tr>
                     <th>Activity Name</th>
@@ -125,7 +137,7 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
                     echo "<tr>
                             <td>" . htmlspecialchars($activity['activity_name']) . "</td>
                             <td>" . htmlspecialchars($activity['description']) . "</td>
-                            <td><a href='student_activity.php?activity_id=" . htmlspecialchars($activity['id']) . "&activity_name=" . htmlspecialchars($activity['activity_name']) . "&subject_name=" . htmlspecialchars($subject_name) . "'>View Details</a></td>
+                            <td class='view-details'><a href='student_activity.php?activity_id=" . htmlspecialchars($activity['id']) . "&activity_name=" . htmlspecialchars($activity['activity_name']) . "&subject_name=" . htmlspecialchars($subject_name) . "'>View Details</a></td>
                           </tr>";
                 }
                 
@@ -146,6 +158,31 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
         <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> 
     </div>
 </footer>
+
+<script>
+    function filterTable(inputId, tableId) {
+        const input = document.getElementById(inputId);
+        const table = document.getElementById(tableId);
+        const rows = table.getElementsByTagName('tr');
+        const filter = input.value.toLowerCase();
+
+        for (let i = 1; i < rows.length; i++) { // Skip the header row
+            const cells = rows[i].getElementsByTagName('td');
+            let found = false;
+
+            for (let j = 0; j < cells.length; j++) {
+                if (cells[j].textContent.toLowerCase().includes(filter)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            rows[i].style.display = found ? '' : 'none';
+        }
+    }
+
+    document.getElementById('activitySearch').addEventListener('keyup', () => filterTable('activitySearch', 'activityTable'));
+</script>
 
 </body>
 </html>

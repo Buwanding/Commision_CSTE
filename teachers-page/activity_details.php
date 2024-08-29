@@ -32,6 +32,34 @@ if ($activity_id) {
     <title>Activity Details</title> <!-- Set the title of the document -->
     <link rel="stylesheet" href="./teacher-styles/subject-style.css"> <!-- Link to the external CSS stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Include Font Awesome icons -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .search-bar {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -54,7 +82,11 @@ if ($activity_id) {
             <center><h1>ACTIVITY DETAILS</h1></center> <!-- Centered heading for the activity details -->
             <h2><?php echo htmlspecialchars($activity_name); ?></h2> <!-- Display the activity name, ensuring special characters are escaped -->
             <br><br><br><br>
-            <table>
+            
+            <!-- Search bar for filtering table rows -->
+            <input type="text" id="activitySearch" class="search-bar" placeholder="Search for students...">
+
+            <table id="activityTable">
                 <thead>
                     <tr>
                         <th>Student Email</th>
@@ -92,7 +124,6 @@ if ($activity_id) {
                                     N/A <!-- Display 'N/A' if no file was submitted -->
                                 <?php endif; ?>
                             </td>
-
                         </tr>
                     <?php endwhile; ?> <!-- End of the loop -->
                 </tbody>
@@ -107,6 +138,31 @@ if ($activity_id) {
             <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> <!-- Footer text -->
         </div>
     </footer>
+
+    <script>
+        function filterTable(inputId, tableId) {
+            const input = document.getElementById(inputId);
+            const table = document.getElementById(tableId);
+            const rows = table.getElementsByTagName('tr');
+            const filter = input.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) { // Skip the header row
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(filter)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+
+        document.getElementById('activitySearch').addEventListener('keyup', () => filterTable('activitySearch', 'activityTable'));
+    </script>
 </body>
 </html>
 
@@ -115,4 +171,3 @@ if ($activity_id) {
 $activity_stmt->close(); // Close the prepared statement
 $conn->close(); // Close the database connection
 ?>
-

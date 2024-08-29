@@ -75,6 +75,15 @@ $stud_stmt->close(); // Close the statement for fetching student details
         tr:hover {
             background-color: #f1f1f1;
         }
+        .view-details {
+            text-align: center; /* Center the link inside the cell */
+        }
+        .search-bar {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -140,14 +149,15 @@ $stud_stmt->close(); // Close the statement for fetching student details
         <!-- Display the list of activities for the subject -->
         <div class="list-container">
         <h2>Activities</h2>
-        <table>
+        <input type="text" id="activitySearch" class="search-bar" placeholder="Search for activities...">
+        <table id="activitiesTable">
             <thead>
                 <tr>
                     <th>Activity Name</th>
                     <th>Description</th>
                     <th>Deadline</th>
                     <th>Actions</th>
-                     <th>View Details</th>
+                    <th>View Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -165,8 +175,7 @@ $stud_stmt->close(); // Close the statement for fetching student details
                             <td>" . htmlspecialchars($activity['activity_name']) . "</td>
                             <td>" . htmlspecialchars($activity['description']) . "</td>
                             <td>" . htmlspecialchars($activity['deadline']) . "</td>
-                            <td>
-            
+                            <td class='view-details'>
                                 <form action='../php/update.php' method='post' style='display:inline;'>
                                     <input type='hidden' name='subject_id' value='" . htmlspecialchars($subject_id) . "'>
                                     <input type='hidden' name='activity_name' value='" . htmlspecialchars($activity['activity_name']) . "'>
@@ -174,7 +183,7 @@ $stud_stmt->close(); // Close the statement for fetching student details
                                     <button type='submit' class='update-button'>Update</button>
                                 </form>
                             </td>
-                            <td> <a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id']) . "&subject_name=" . htmlspecialchars($subject_name) . "&activity_name=" . htmlspecialchars($activity['activity_name']) . "'>View Details</a></td>
+                            <td class='view-details'> <a href='activity_details.php?activity_id=" . htmlspecialchars($activity['id']) . "&subject_name=" . htmlspecialchars($subject_name) . "&activity_name=" . htmlspecialchars($activity['activity_name']) . "'>View Details</a></td>
                           </tr>";
                 }
                 
@@ -189,7 +198,8 @@ $stud_stmt->close(); // Close the statement for fetching student details
         <!-- Display the list of students assigned to the subject -->
         <div class="list-container">
             <h2>Assigned Students</h2>
-            <table>
+            <input type="text" id="studentSearch" class="search-bar" placeholder="Search for students...">
+            <table id="studentsTable">
                 <thead>
                     <tr>
                         <th>Student Email</th>
@@ -221,7 +231,8 @@ $stud_stmt->close(); // Close the statement for fetching student details
         <!-- Display the list of parents associated with the students -->
         <div class="list-container">
             <h2>List Parents</h2>
-            <table>
+            <input type="text" id="parentSearch" class="search-bar" placeholder="Search for parents...">
+            <table id="parentsTable">
                 <thead>
                     <tr>
                         <th>Student Email</th>
@@ -252,6 +263,33 @@ $stud_stmt->close(); // Close the statement for fetching student details
         <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> <!-- Footer content -->
     </div>
 </footer>
+
+<script>
+    function filterTable(inputId, tableId) {
+        const input = document.getElementById(inputId);
+        const table = document.getElementById(tableId);
+        const rows = table.getElementsByTagName('tr');
+        const filter = input.value.toLowerCase();
+
+        for (let i = 1; i < rows.length; i++) { // Skip the header row
+            const cells = rows[i].getElementsByTagName('td');
+            let found = false;
+
+            for (let j = 0; j < cells.length; j++) {
+                if (cells[j].textContent.toLowerCase().includes(filter)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            rows[i].style.display = found ? '' : 'none';
+        }
+    }
+
+    document.getElementById('activitySearch').addEventListener('keyup', () => filterTable('activitySearch', 'activitiesTable'));
+    document.getElementById('studentSearch').addEventListener('keyup', () => filterTable('studentSearch', 'studentsTable'));
+    document.getElementById('parentSearch').addEventListener('keyup', () => filterTable('parentSearch', 'parentsTable'));
+</script>
 
 </body>
 </html>
