@@ -41,8 +41,8 @@ while ($parent = $stud_result->fetch_assoc()) {
                " in " . $subject_name . " is " . $remarks;
 }
 
-$apiURL = "8gprrd.api.infobip.com";
-$apiKey = "2db44b4c40f78de1ca10449c921a1e48-2d77bd07-7047-4cbe-9ac0-54520fec118e";
+$apiURL = "dkqvq1.api.infobip.com";
+$apiKey = "796ffed709e2c1204a7d2052677522ca-2283dd9d-37e3-4ee8-a193-2ffaa2e9b57a";
 
 $configuration = new Configuration(host: $apiURL, apiKey: $apiKey);
 $api = new SmsApi(config: $configuration);
