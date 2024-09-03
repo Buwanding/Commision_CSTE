@@ -135,7 +135,9 @@ footer {
     color: white; /* Set the footer text color to white */
     text-align: center; /* Center-align the footer text */
     padding: 10px 0; /* Add padding inside the footer */
-    position: absolute; /* Position the footer at the bottom */
+    position: fixed;
+    left: 0;
+    bottom: 0;  /* Position the footer at the bottom */
     width: 100%; /* Make the footer span the full width of the page */
 }
 
