@@ -9,8 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ad_id"])) {
     $activity_name = $_POST['activity_name'];
     $subject_name = $_POST['subject_name'];
 
+
+
     // Prepare and bind the update statement
-    $stmt = $conn->prepare("UPDATE activity_details SET remarks = ? WHERE id = ?");
+   $stmt = $conn->prepare("UPDATE activity_details SET remarks = ? WHERE id = ? ");
     if ($stmt === false) {
         die("Prepare failed: " . $conn->error);
     }
