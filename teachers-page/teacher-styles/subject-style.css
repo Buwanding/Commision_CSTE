@@ -62,7 +62,7 @@ nav ul li a:hover, .logout a:hover {
 
 /* Main container: Sets max-width, centers with margin auto, styles padding, background, border-radius, and shadow */
 main {
-    max-width: 900px;
+    max-width: 1500px;
     margin: 30px auto;
     padding: 25px;
     background-color: #ffffff;
