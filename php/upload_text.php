@@ -38,8 +38,8 @@ $phonenum = null; // Initialize to null to detect if it's set later
 
 while ($parent = $stud_result->fetch_assoc()) {
     $phonenum = $parent['contact_number'];
-    $message = "Reminder Maam/Sir " . $parent['parents_name'] . 
-               " your son/daughter has passed his/her " . $activity_name . 
+    $message = " Good day! " . $parent['parents_name'] . 
+               " Please be informed that your child has successfully completed the " . $activity_name . 
                " in " . $subject_name . " on date " . $timepass;
 }
 

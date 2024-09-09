@@ -36,9 +36,9 @@ $stud_result = $stud_stmt->get_result();
 
 while ($parent = $stud_result->fetch_assoc()) {
     $phonenum = $parent['contact_number'];
-    $message = "Reminder Maam/Sir " . $parent['parents_name'] . 
-               " your son/daughter's score on " . $activity_name . 
-               " in " . $subject_name . " is " . $remarks;
+    $message = " Good day! " . $parent['parents_name'] . 
+               " Please be informed that your child has received a score on " . $activity_name . 
+               " for their " . $subject_name . " activity. Thank you. " . $remarks;
 }
 
 $apiURL = "dkqvq1.api.infobip.com";

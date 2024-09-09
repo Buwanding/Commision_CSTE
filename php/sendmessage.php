@@ -59,7 +59,8 @@ $api = new SmsApi(config: $configuration);
 foreach ($students as $student_data) {
     foreach ($student_data['parents'] as $parent) {
         $phonenum = $parent['contact_number'];
-        $message = "Reminder Maam/Sir " . $parent['parents_name'] . " has an activity in " . $activity_name . " with a deadline " . $deadline;
+        $message = " Good day! " . $parent['parents_name'] . " Please be advised that your child has a new " . $activity_name . " activity due on " . $deadline . " Kindly ensure they complete it on time. Thank you for your cooperation.";
+
         
         $destination = new SmsDestination(to: $phonenum);
         $themessage = new SmsTextualMessage(
