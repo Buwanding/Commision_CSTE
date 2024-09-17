@@ -90,7 +90,7 @@ $stud_stmt->close(); // Close the statement for fetching student details
 
 <header>
     <div class="header-container">
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> <!-- System logo -->
+        <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label> <!-- System logo -->
         <nav>
             <ul>
                 <li><a href="dashboard.php">HOME</a></li> <!-- Link to the dashboard -->

@@ -66,7 +66,7 @@ $conn->close(); // Closes the database connection.
 
 <header>
     <div class="header-container">
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> <!-- System logo -->
+        <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label> <!-- System logo -->
         <nav>
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li> <!-- Link to the home (dashboard) page -->
@@ -130,7 +130,7 @@ $conn->close(); // Closes the database connection.
 
 <footer>
     <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> <!-- Footer with copyright notice -->
+        <p>&copy; 2024 Student Activity Monitoring System (SAMS). All rights reserved.</p> <!-- Footer with copyright notice -->
     </div>
 </footer>
 

@@ -50,7 +50,7 @@ $passed_stmt->close(); // Close the prepared statement
 <body>
 <header>
     <div class="header-container">
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> <!-- Logo or title -->
+        <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label> <!-- Logo or title -->
         <nav>
             <ul>
                 <li><a href="dashboard.php">HOME</a></li> <!-- Link to the dashboard page -->
@@ -92,7 +92,7 @@ $passed_stmt->close(); // Close the prepared statement
 
 <footer>
     <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> <!-- Footer content -->
+        <p>&copy; 2024 Student Activity Monitoring System (SAMS). All rights reserved.</p> <!-- Footer content -->
     </div>
 </footer>
 </body>

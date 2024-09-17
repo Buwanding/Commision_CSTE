@@ -64,7 +64,7 @@ if ($activity_id) {
 <body>
     <header>
         <div class="header-container">
-            <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> <!-- Logo label -->
+            <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label> <!-- Logo label -->
             <nav>
                 <ul>
                     <li><a href="dashboard.php">HOME</a></li> <!-- Link to the home page -->
@@ -135,7 +135,7 @@ if ($activity_id) {
 
     <footer>
         <div class="footer-container">
-            <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> <!-- Footer text -->
+            <p>&copy; 2024 Student Activity Monitoring System (SAMS). All rights reserved.</p> <!-- Footer text -->
         </div>
     </footer>
 

@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted vi
 
 <header>
     <div class="header-container">
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> <!-- System logo in the header -->
+        <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label> <!-- System logo in the header -->
         <nav>
             <ul>
                 <li><a href="dashboard.php"> HOME </i> </a></li> <!-- Link to the home page -->
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted vi
 
 <footer>
     <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> <!-- Footer content -->
+        <p>&copy; 2024 Student Activity Monitoring System (SAMS). All rights reserved.</p> <!-- Footer content -->
     </div>
 </footer>
 

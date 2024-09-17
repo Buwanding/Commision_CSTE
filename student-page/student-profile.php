@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <header>
     <div class="header-container">
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
+        <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label>
         <nav>
             <ul>
                 <li><a href="dashboard.php">HOME</a></li>
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <footer>
     <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p>
+        <p>&copy; 2024 Student Activity Monitoring System (SAMS). All rights reserved.</p>
     </div>
 </footer>
 

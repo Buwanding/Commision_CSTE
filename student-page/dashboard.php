@@ -38,7 +38,7 @@ $conn->close();
 <body>
 <header>
     <div class="header-container">
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label>
+        <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label>
         <nav>
             <ul>
                 <li><a href="dashboard.php">  HOME </i> </a></li>

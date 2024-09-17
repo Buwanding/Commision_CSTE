@@ -63,7 +63,7 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
 <header>
     <div class="header-container">
         <!-- Display the title of the system in the header -->
-        <label class="logo">STUDENT ACTIVITY MANAGEMENT SYSTEM</label> 
+        <label class="logo">STUDENT ACTIVITY MONITORING SYSTEM</label> 
         <nav>
             <ul>
                 <!-- Navigation link to the dashboard page -->
@@ -155,7 +155,7 @@ $subject_des = isset($_REQUEST["subject_des"]) ? htmlspecialchars($_REQUEST["sub
 <footer>
     <div class="footer-container">
         <!-- Footer content, displaying the copyright notice -->
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> 
+        <p>&copy; 2024 Student Activity Monitoring System (SAMS). All rights reserved.</p> 
     </div>
 </footer>
 
