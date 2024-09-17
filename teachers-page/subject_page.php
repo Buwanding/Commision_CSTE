@@ -260,7 +260,7 @@ $stud_stmt->close(); // Close the statement for fetching student details
 
 <footer>
     <div class="footer-container">
-        <p>&copy; 2024 Student Activity Management System (SAMS). All rights reserved.</p> <!-- Footer content -->
+        <p>&copy; 2024 Student Activity Monitoring System (SAMS). All rights reserved.</p> <!-- Footer content -->
     </div>
 </footer>
 
